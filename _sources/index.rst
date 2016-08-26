@@ -28,13 +28,13 @@ By Brad Miller and David Ranum, Luther College
    :numbered:
    :maxdepth: 3
 
-   Introduction/toctree.rst
-   BasicDS/toctree.rst
-   AlgorithmAnalysis/toctree.rst
-   Recursion/toctree.rst
-   SortSearch/toctree.rst
-   Trees/toctree.rst
-   Graphs/toctree.rst
+   Introducao/toctree.rst
+   EDBasicos/toctree.rst
+   AnaliseDeAlgoritmos/toctree.rst
+   Recursao/toctree.rst
+   OrdenacaoBusca/toctree.rst
+   Arvores/toctree.rst
+   Grafos/toctree.rst
 
 Acknowledgements
 ::::::::::::::::

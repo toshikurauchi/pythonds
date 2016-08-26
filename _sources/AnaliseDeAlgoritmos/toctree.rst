@@ -1,0 +1,18 @@
+Análise
+::::::::
+
+.. toctree::
+    :caption: Análise
+    :maxdepth: 2
+
+    Objetivos.rst
+    WhatIsAlgorithmAnalysis.rst
+    BigONotation.rst
+    AnAnagramDetectionExample.rst
+    PerformanceofPythonDataStructures.rst
+    Lists.rst
+    Dictionaries.rst
+    Summary.rst
+    KeyTerms.rst
+    DiscussionQuestions.rst
+    ProgrammingExercises.rst
