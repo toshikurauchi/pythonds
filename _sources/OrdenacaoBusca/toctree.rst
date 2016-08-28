@@ -5,7 +5,7 @@ Sorting and Searching
     :caption: Sorting and Searching
     :maxdepth: 2
 
-    Objectives.rst
+    Objetivos.rst
     searching.rst
     TheSequentialSearch.rst
     TheBinarySearch.rst
