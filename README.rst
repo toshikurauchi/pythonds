@@ -31,3 +31,5 @@ Padronização das traduções
 ==========================
 
 - **Big-O**: ???
+- **Benchmark analysis**: análise de aferição(?)
+- **Tuple**: tupla

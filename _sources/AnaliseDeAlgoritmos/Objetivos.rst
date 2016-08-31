@@ -12,8 +12,8 @@ Objetivos
 -  To understand the “Big-O” execution time of common operations on
    Python lists and dictionaries.
 
--  To understand how the implementation of Python data impacts algorithm
-   analysis.
+-  Entender como a implementação dos dados em Python impacta a análise 
+   de algoritmos.
 
--  To understand how to benchmark simple Python programs.
+-  Entender como aferir programas simples em Python.
 
