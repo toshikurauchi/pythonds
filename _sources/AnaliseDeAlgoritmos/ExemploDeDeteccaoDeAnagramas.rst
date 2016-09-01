@@ -2,81 +2,81 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-An Anagram Detection Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Exemplo: Detecção de Anagramas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A good example problem for showing algorithms with different orders of
-magnitude is the classic anagram detection problem for strings. One
-string is an anagram of another if the second is simply a rearrangement
-of the first. For example, ``'heart'`` and ``'earth'`` are anagrams. The
-strings ``'python'`` and ``'typhon'`` are anagrams as well. For the sake
-of simplicity, we will assume that the two strings in question are of
-equal length and that they are made up of symbols from the set of 26
-lowercase alphabetic characters. Our goal is to write a boolean function
-that will take two strings and return whether they are anagrams.
+Um bom exemplo de problema para mostrar algoritmos com diferentes ordens
+de magnitude é o problema clássico de detecção de anagramas para strings.
+Uma string é um anagrama de outra se a segunda é simplesmente um rearranjo
+da primeira. Por exemplo, ``'amor'`` e ``'roma'`` são anagramas. As strings
+``'marrocos'`` e ``'socorram'`` também são anagramas. Por uma questão de 
+simplicidade, vamos assumir que as duas strings em questão são de 
+comprimentos iguais e que são compostas por símbolos do conjunto dos 26
+caracteres alfabéticos minúsculos. Nosso objetivo é escrever uma função
+booleana que receberá duas strings e devolverá se elas são anagramas.
 
-Solution 1: Checking Off
-^^^^^^^^^^^^^^^^^^^^^^^^
+Solução 1: Marcação
+^^^^^^^^^^^^^^^^^^^
 
-Our first solution to the anagram problem will check to see that each
-character in the first string actually occurs in the second. If it is
-possible to “checkoff” each character, then the two strings must be
-anagrams. Checking off a character will be accomplished by replacing it
-with the special Python value ``None``. However, since strings in Python
-are immutable, the first step in the process will be to convert the
-second string to a list. Each character from the first string can be
-checked against the characters in the list and if found, checked off by
-replacement. :ref:`ActiveCode 1 <lst_anagramSolution>` shows this function.
+Nossa primeira solução para o problema dos anagramas verificará se cada
+caractere na primeira string realmente ocorre na segunda. Se for possível
+"marcar" cada caractere, então as duas strings são anagramas. A marcação
+de um caractere será realizada substituindo-o pelo valor especial em 
+Python ``None``. Entretanto, como strings em Python são imutáveis, o 
+primeiro passo do processo será converter a segunda string em uma lista.
+Cada caractere da primeira string será buscado entre os caracteres da
+segunda lista e, caso encontrado, será marcado por substituição.
+:ref:`ActiveCode 1 <lst_anagramSolution>` mostra essa função.
 
 .. _lst_anagramSolution:
 
 .. activecode:: active5
-    :caption: Checking Off
+    :caption: Marcação
 
-    def anagramSolution1(s1,s2):
-        alist = list(s2)
+    def solucaoAnagrama1(s1,s2):
+        umalista = list(s2)
 
         pos1 = 0
-        stillOK = True
+        aindalOK = True
 
-        while pos1 < len(s1) and stillOK:
+        while pos1 < len(s1) and aindalOK:
             pos2 = 0
-            found = False
-            while pos2 < len(alist) and not found:
-                if s1[pos1] == alist[pos2]:
-                    found = True
+            encontrado = False
+            while pos2 < len(umalista) and not encontrado:
+                if s1[pos1] == umalista[pos2]:
+                    encontrado = True
                 else:
                     pos2 = pos2 + 1
 
-            if found:
-                alist[pos2] = None
+            if encontrado:
+                umalista[pos2] = None
             else:
-                stillOK = False
+                aindalOK = False
 
             pos1 = pos1 + 1
 
-        return stillOK
+        return aindalOK
 
-    print(anagramSolution1('abcd','dcba'))
+    print(solucaoAnagrama1('abcd','dcba'))
 
-To analyze this algorithm, we need to note that each of the *n*
-characters in ``s1`` will cause an iteration through up to *n*
-characters in the list from ``s2``. Each of the *n* positions in the
-list will be visited once to match a character from ``s1``. The number
-of visits then becomes the sum of the integers from 1 to *n*. We stated
-earlier that this can be written as
+Para analisar este algoritmo, devemos notar que cada um dos *n*
+caracteres em ``s1`` causará uma iteração por até *n* caracteres
+na lista de ``s2``. Cada uma das *n* posições na lista será visitada
+uma vez para marcar um caractere de ``s1``. O número de visitas 
+então é dado pela soma dos inteiros entre 1 e *n*. Vimos 
+anteriormente que isso pode ser escrito como
 
 .. math::
 
    \sum_{i=1}^{n} i &= \frac {n(n+1)}{2} \\
                     &= \frac {1}{2}n^{2} + \frac {1}{2}n
 
-As :math:`n` gets large, the :math:`n^{2}` term will dominate the
-:math:`n` term and the :math:`\frac {1}{2}` can be ignored.
-Therefore, this solution is :math:`O(n^{2})`.
+Conforme :math:`n` aumenta, o termo :math:`n^{2}` dominará sobre
+o termo :math:`n` e o :math:`\frac {1}{2}` pode ser ignorado.
+Assim, a solução é :math:`O(n^{2})`.
 
-Solution 2: Sort and Compare
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Solução 2: Ordenar e Comparar
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Another solution to the anagram problem will make use of the fact that
 even though ``s1`` and ``s2`` are different, they are anagrams only if

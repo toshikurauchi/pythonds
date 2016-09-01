@@ -8,7 +8,7 @@ Análise
     Objetivos.rst
     OQueEAnaliseDeAlgoritmos.rst
     BigONotation.rst
-    AnAnagramDetectionExample.rst
+    ExemploDeDeteccaoDeAnagramas.rst
     PerformanceofPythonDataStructures.rst
     Lists.rst
     Dictionaries.rst

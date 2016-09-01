@@ -33,3 +33,6 @@ Padronização das traduções
 - **Big-O**: ???
 - **Benchmark analysis**: análise de aferição(?)
 - **Tuple**: tupla
+- **String**: string(?)
+- **Check off**: marcação (nome do método de detecção de anagramas)
+- **List (Python)**: lista
