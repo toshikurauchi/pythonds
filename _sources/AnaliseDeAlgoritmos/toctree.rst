@@ -6,7 +6,7 @@ Análise
     :maxdepth: 2
 
     Objetivos.rst
-    WhatIsAlgorithmAnalysis.rst
+    OQueEAnaliseDeAlgoritmos.rst
     BigONotation.rst
     AnAnagramDetectionExample.rst
     PerformanceofPythonDataStructures.rst
