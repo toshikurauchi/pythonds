@@ -2,12 +2,12 @@ Sorting and Searching
 :::::::::::::::::::::
 
 .. toctree::
-    :caption: Sorting and Searching
+    :caption: Ordenação e Busca
     :maxdepth: 2
 
     Objetivos.rst
-    searching.rst
-    TheSequentialSearch.rst
+    buscando.rst
+    BuscaSequencial.rst
     TheBinarySearch.rst
     Hashing.rst
     sorting.rst
