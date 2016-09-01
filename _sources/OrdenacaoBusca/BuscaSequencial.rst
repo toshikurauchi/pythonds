@@ -2,22 +2,21 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-The Sequential Search
-~~~~~~~~~~~~~~~~~~~~~
+A Busca Sequencial
+~~~~~~~~~~~~~~~~~~
 
-When data items are stored in a collection such as a list, we say that
-they have a linear or sequential relationship. Each data item is stored
-in a position relative to the others. In Python lists, these relative
-positions are the index values of the individual items. Since these
-index values are ordered, it is possible for us to visit them in
-sequence. This process gives rise to our first searching technique, the
-**sequential search**.
+Quando itens de dados são armazenados numa coleção tal qual uma lista,
+nós dizemos que eles têm uma relação linear ou sequencial. Cada item de dado é
+armazenado numa posição relativa aos demais. Em listas do Python, essas
+posições relativas são os índices dos itens individuais. Como esses
+índices estão ordenados, é possível que nós visitemos os itens sequencialmente.
+Esse processo dá origem à nossa primeira técnica de busca, a **busca sequencial**.
 
-:ref:`Figure 1 <fig_seqsearch>` shows how this search works. Starting at the first
-item in the list, we simply move from item to item, following the
-underlying sequential ordering until we either find what we are looking
-for or run out of items. If we run out of items, we have discovered that
-the item we were searching for was not present.
+:ref:`Figura 1 <fig_seqsearch>` mostra como essa busca funciona. Começando
+pelo primeiro item da lista, nós simplesmente andamos de item a item,
+obedecendo à disposição sequencial até que encontremos o que nós estamos
+procurando ou que não haja mais itens a serem buscados. Quando não há mais
+itens, então chegamos à conclusão de que o item buscado não estava presente.
 
 
 .. _fig_seqsearch:
@@ -42,7 +41,7 @@ assigned the value ``True`` if we discover the item in the list.
     def sequentialSearch(alist, item):
         pos = 0
         found = False
-        
+
         while pos < len(alist) and not found:
             if alist[pos] == item:
                 found = True
@@ -200,4 +199,3 @@ the list only in the case where we do not find the item.
       :feedback_d: Because 12 is less than the key value 13 you need to keep going.
 
       Suppose you are doing a sequential search of the ordered list [3, 5, 6, 8, 11, 12, 14, 15, 17, 18].  How many comparisons would you need to do in order to find the key 13?
-
