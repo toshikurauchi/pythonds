@@ -78,89 +78,90 @@ Assim, a solução é :math:`O(n^{2})`.
 Solução 2: Ordenar e Comparar
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Another solution to the anagram problem will make use of the fact that
-even though ``s1`` and ``s2`` are different, they are anagrams only if
-they consist of exactly the same characters. So, if we begin by sorting
-each string alphabetically, from a to z, we will end up with the same
-string if the original two strings are anagrams. :ref:`ActiveCode 2 <lst_ana2>` shows
-this solution. Again, in Python we can use the built-in ``sort`` method
-on lists by simply converting each string to a list at the start.
+Outra solução para o problema do anagrama utilizará o fato de que mesmo
+que ``s1`` e ``s2`` sejam diferentes, eles são anagramas somente se 
+consistem exatamente dos mesmos caracteres. Então, se começarmos ordenando
+cada string alfabeticamente, de a a z, concluiremos com a mesma string
+se as duas strings originais forem anagramas. :ref:`ActiveCode 2 <lst_ana2>`
+mostra essa solução. Novamente, em Python podemos utilizar o método ``sort``
+em listas simplesmente convertendo cada string em uma lista no início.
 
 .. _lst_ana2:
 
 .. activecode:: active6
-    :caption: Sort and Compare
+    :caption: Ordenar e Comparar
 
-    def anagramSolution2(s1,s2):
-        alist1 = list(s1)
-        alist2 = list(s2)
+    def solucaoAnagrama2(s1,s2):
+        umalista1 = list(s1)
+        umalista2 = list(s2)
 
-        alist1.sort()
-        alist2.sort()
+        umalista1.sort()
+        umalista2.sort()
 
         pos = 0
-        matches = True
+        iguais = True
 
-        while pos < len(s1) and matches:
-            if alist1[pos]==alist2[pos]:
+        while pos < len(s1) and iguais:
+            if umalista1[pos]==umalista2[pos]:
                 pos = pos + 1
             else:
-                matches = False
+                iguais = False
 
-        return matches
+        return iguais
 
-    print(anagramSolution2('abcde','edcba'))
+    print(solucaoAnagrama2('abcde','edcba'))
 
-At first glance you may be tempted to think that this algorithm is
-:math:`O(n)`, since there is one simple iteration to compare the *n*
-characters after the sorting process. However, the two calls to the
-Python ``sort`` method are not without their own cost. As we will see in
-a later chapter, sorting is typically either :math:`O(n^{2})` or
-:math:`O(n\log n)`, so the sorting operations dominate the iteration.
-In the end, this algorithm will have the same order of magnitude as that
-of the sorting process.
+À primeira vista você pode se sentir tentado a pensar que este algoritmo
+é :math:`O(n)`, já que há somente uma simples iteração para comparar os
+*n* caracteres depois do processo de ordenação. Entretanto, as duas 
+chamadas ao método ``sort`` do Python também têm seus custos. Como 
+veremos no último capítulo, ordenações são tipicamente :math:`O(n^{2})` 
+ou :math:`O(n\log n)`, então as operações de ordenação dominam sobre a
+iteração. No fim, este algoritmo terá a mesma ordem de magnitude do 
+processo de ordenação.
 
-Solution 3: Brute Force
-^^^^^^^^^^^^^^^^^^^^^^^
+Solução 3: Força Bruta
+^^^^^^^^^^^^^^^^^^^^^^
 
-A **brute force** technique for solving a problem typically tries to
-exhaust all possibilities. For the anagram detection problem, we can
-simply generate a list of all possible strings using the characters from
-``s1`` and then see if ``s2`` occurs. However, there is a difficulty
-with this approach. When generating all possible strings from ``s1``,
-there are *n* possible first characters, :math:`n-1` possible
-characters for the second position, :math:`n-2` for the third, and so
-on. The total number of candidate strings is
-:math:`n*(n-1)*(n-2)*...*3*2*1`, which is :math:`n!`. Although some
-of the strings may be duplicates, the program cannot know this ahead of
-time and so it will still generate :math:`n!` different strings.
+Uma técnica de **força bruta** para resolver um problema tipicamente
+tenta todas as possibilidades à exaustão. Para o problema de detecção
+de anagramas, podemos simplesmente gerar uma lista com todas as strings
+possíveis usando os caracteres de ``s1`` e verificar se ``s2`` ocorre.
+Entretanto, há uma dificuldade com esta abordagem. Ao gerar todas as
+strings possíveis a partir de ``s1``, há *n* possíveis primeiros
+caracteres, :math:`n-1` possíveis caracteres para a segunda posição,
+:math:`n-2` para a terceira e assim por diante. O número total de 
+strings candidatas é :math:`n*(n-1)*(n-2)*...*3*2*1`, ou seja, :math:`n!`.
+Embora algumas das strings sejam duplicadas, o programa não pode saber
+disso de antemão e então ele ainda gerará :math:`n!` strings diferentes.
 
-It turns out that :math:`n!` grows even faster than :math:`2^{n}` as
-*n* gets large. In fact, if ``s1`` were 20 characters long, there would
-be :math:`20!=2,432,902,008,176,640,000` possible candidate strings.
-If we processed one possibility every second, it would still take us
-77,146,816,596 years to go through the entire list. This is probably not
-going to be a good solution.
+Acontece que :math:`n!` cresce mais rápido ainda do que :math:`2^{n}`
+conforme *n* cresce. De fato, se ``s1`` contivesse 20 caracteres, haveria
+:math:`20!=2,432,902,008,176,640,000` possíveis strings candidatas. Se
+processássemos uma possibilidade a cada segundo, ainda seriam necessários
+77,146,816,596 anos para percorrer toda a lista. Esta provavelmente não
+será uma boa solução.
 
-Solution 4: Count and Compare
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Solução 4: Contar e Comparar
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Our final solution to the anagram problem takes advantage of the fact
-that any two anagrams will have the same number of a’s, the same number
-of b’s, the same number of c’s, and so on. In order to decide whether
-two strings are anagrams, we will first count the number of times each
-character occurs. Since there are 26 possible characters, we can use a
-list of 26 counters, one for each possible character. Each time we see a
-particular character, we will increment the counter at that position. In
-the end, if the two lists of counters are identical, the strings must be
-anagrams. :ref:`ActiveCode 3 <lst_ana4>` shows this solution.
+Nossa solução final para o problema do anagrama se aproveita do fato de
+que quaisquer dois anagramas terão o mesmo número de a's, o mesmo número
+de b's, o mesmo número de c's e assim por diante. Para decidir se duas
+strings são anagramas, vamos inicialmente contar o número de vezes que
+cada caractere ocorre. Como há 26 possibilidades de caracteres, podemos
+utilizar uma lista de 26 contadores, um para cada caractere possível. 
+Cada vez que encontramos um caractere em particular, incrementamos o 
+seu contador naquela posição. Ao final, se as duas listas de contadores
+são idênticas, as strings são anagramas. :ref:`ActiveCode 3 <lst_ana4>`
+mostra esta solução.
 
 .. _lst_ana4:
 
 .. activecode:: active7
-    :caption: Count and Compare
+    :caption: Contar e Comparar
 
-    def anagramSolution4(s1,s2):
+    def solucaoAnagrama4(s1,s2):
         c1 = [0]*26
         c2 = [0]*26
 
@@ -173,42 +174,41 @@ anagrams. :ref:`ActiveCode 3 <lst_ana4>` shows this solution.
             c2[pos] = c2[pos] + 1
 
         j = 0
-        stillOK = True
-        while j<26 and stillOK:
+        aindaOK = True
+        while j<26 and aindaOK:
             if c1[j]==c2[j]:
                 j = j + 1
             else:
-                stillOK = False
+                aindaOK = False
 
-        return stillOK
+        return aindaOK
 
-    print(anagramSolution4('apple','pleap'))
+    print(solucaoAnagrama4('marrocos','socorram'))
 
 
+Novamente, a solução tem algumas iterações. Entretanto, diferentemente 
+da primeira solução, nenhuma delas é aninhada. As duas primeiras
+iterações utilizadas para contar os caracteres são ambas baseadas em
+*n*. A terceira iteração, comparando as duas listas de contadores, sempre
+demoram 26 passos, já que há somente 26 possíveis caracteres nas strings.
+Adicionando tudo temos :math:`T(n)=2n+26` passos. Ou seja, :math:`O(n)`.
+Encontramos um algoritmo com ordem de magnitude linear para resolver
+este problema.
 
-Again, the solution has a number of iterations. However, unlike the
-first solution, none of them are nested. The first two iterations used
-to count the characters are both based on *n*. The third iteration,
-comparing the two lists of counts, always takes 26 steps since there are
-26 possible characters in the strings. Adding it all up gives us
-:math:`T(n)=2n+26` steps. That is :math:`O(n)`. We have found a
-linear order of magnitude algorithm for solving this problem.
+Antes de deixarmos este exemplo, devemos dizer algo sobre requisitos de
+espaço. Embora a última solução tenha sido capaz de ser executada em tempo
+linear, ela só pôde fazer isso utilizando memória adicional para armazenar
+as duas listas de contadores de caracteres. Em outras palavra, este 
+algoritmo sacrificou espaço para ganhar tempo.
 
-Before leaving this example, we need to say something about space
-requirements. Although the last solution was able to run in linear time,
-it could only do so by using additional storage to keep the two lists of
-character counts. In other words, this algorithm sacrificed space in
-order to gain time.
+Isso é bastante comum. Em diversas ocasiões você deverá tomar decisões
+entre tempo e espaço. Neste caso, a quantidade de espaço adicional não
+é significativa. Entretanto, se o alfabeto utilizado tivesse milhões de
+caracteres, seria uma preocupação maior. Como um cientista da computação,
+quando dada a escolha de algoritmos, caberá a você determinar o melhor
+uso dos recursos computacionais dado um problema em particular.
 
-This is a common occurrence. On many occasions you will need to make
-decisions between time and space trade-offs. In this case, the amount of
-extra space is not significant. However, if the underlying alphabet had
-millions of characters, there would be more concern. As a computer
-scientist, when given a choice of algorithms, it will be up to you to
-determine the best use of computing resources given a particular
-problem.
-
-.. admonition:: Self Check
+.. admonition:: Auto Avaliação
 
    .. mchoice:: analysis_1
        :answer_a: O(n)
@@ -216,10 +216,10 @@ problem.
        :answer_c: O(log n)
        :answer_d: O(n^3)
        :correct: b
-       :feedback_a: In an example like this you want to count the nested loops. especially the loops that are dependent on the same variable, in this case, n.
-       :feedback_b: A singly nested loop like this is O(n^2)
-       :feedback_c: log n typically is indicated when the problem is iteratvely made smaller
-       :feedback_d: In an example like this you want to count the nested loops. especially the loops that are dependent on the same variable, in this case, n.
+       :feedback_a: Em um exemplo como este você deve contar o número de laços aninhados. Especialmente os laços que dependem da mesma variável, neste caso, n.
+       :feedback_b: Um único laço aninhado como este é O(n^2)
+       :feedback_c: log n tipicamente é indicado por um problema que é feito iterativamente menor
+       :feedback_d: Em um exemplo como este você deve contar o número de laços aninhados. Especialmente os laços que dependem da mesma variável, neste caso, n. 
 
        Given the following code fragment, what is its Big-O running time?
 
