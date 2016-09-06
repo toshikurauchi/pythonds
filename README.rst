@@ -8,7 +8,7 @@ This book began as a paper book, first published by Franklin Beedle & Associates
 Getting Started
 ===============
 
-We have tried to make it as easy as possible for you to build and use this book.  
+We have tried to make it as easy as possible for you to build and use this book.
 
 1. You can see and read this book online at `interactivepython.org <http://interactivepython.org/runestone/static/pythonds/index.html>`_
 
@@ -33,3 +33,4 @@ Padronização das traduções
 - **Big-O**: ???
 - **Benchmark analysis**: análise de aferição(?)
 - **Tuple**: tupla
+- **nth**: n-ésima(o)

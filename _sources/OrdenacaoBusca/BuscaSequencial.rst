@@ -24,19 +24,19 @@ itens, então chegamos à conclusão de que o item buscado não estava presente.
 .. figure:: Figures/seqsearch.png
    :align: center
 
-   Figure 1: Sequential Search of a List of Integers
+   Figura 1: Busca sequencial de uma lista de inteiros
 
 
-The Python implementation for this algorithm is shown in
-:ref:`CodeLens 1 <lst_seqsearchpython>`. The function needs the list and the item we
-are looking for and returns a boolean value as to whether it is present.
-The boolean variable ``found`` is initialized to ``False`` and is
-assigned the value ``True`` if we discover the item in the list.
+A implementação em Python para esse algoritmo é mostrada em
+:ref:`CodeLens 1 <lst_seqsearchpython>`. A função precisa da lista e do item
+que estamos procurando e retorna um valor booleano para indicar se está
+presente ou não. A variável booleana ``found`` é inicializada com ``False`` e
+muda de valor para ``True`` caso o item seja encontrado na lista.
 
 .. _lst_seqsearchpython:
 
 .. codelens:: search1
-    :caption: Sequential Search of an Unordered List
+    :caption: Busca sequencial em uma lista não ordenada
 
     def sequentialSearch(alist, item):
         pos = 0
@@ -54,45 +54,45 @@ assigned the value ``True`` if we discover the item in the list.
     print(sequentialSearch(testlist, 3))
     print(sequentialSearch(testlist, 13))
 
-Analysis of Sequential Search
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Análise da Busca Sequencial
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To analyze searching algorithms, we need to decide on a basic unit of
-computation. Recall that this is typically the common step that must be
-repeated in order to solve the problem. For searching, it makes sense to
-count the number of comparisons performed. Each comparison may or may
-not discover the item we are looking for. In addition, we make another
-assumption here. The list of items is not ordered in any way. The items
-have been placed randomly into the list. In other words, the probability
-that the item we are looking for is in any particular position is
-exactly the same for each position of the list.
+Para analisar algoritmos de busca, precisamos chegar a um consenso sobre
+a unidade básica de computação. Lembre-se de que este é o típico passo
+a ser dado repetidas vezes para que o problema seja solucionado. Na busca,
+faz sentido contar o número realizado de comparações. Cada comparação pode ou
+não encontrar o item que estamos procurando. Além disso, fazemos outra
+suposição. A lista de itens não está ordenada de maneira alguma. Os itens
+foram colocados aleatoriamente na lista. Em outras palavras, a probabilidade
+de que o item que estamos procurando esteja numa posição em particular é
+exatamente a mesma para cada posição da lista.
 
-If the item is not in the list, the only way to know it is to compare it
-against every item present. If there are :math:`n` items, then the
-sequential search requires :math:`n` comparisons to discover that the
-item is not there. In the case where the item is in the list, the
-analysis is not so straightforward. There are actually three different
-scenarios that can occur. In the best case we will find the item in the
-first place we look, at the beginning of the list. We will need only one
-comparison. In the worst case, we will not discover the item until the
-very last comparison, the `nth` comparison.
+Se o elemento não está na lista, a única maneira de ter certeza é comparando-o
+com cada outro item da lista. Se exsitem :math:`n` itens, então a busca
+sequencial requer :math:`n` comparações para descobrir que tal elemento
+não está lá. Caso o item esteja na lista, a análise já não é tão simples.
+Existem, nesse caso, três diferentes cenários que podem ocorrer. No melhor
+caso, iremos encontrar o item na primeira posição que procurarmos, isto é,
+no começo da lista. Consequentemente, só precisaremos de uma comparação.
+No pior caso, só conseguiremos encontrar o item na última posição, ou seja,
+realizando a `n-ésima` comparação.
 
-What about the average case? On average, we will find the item about
-halfway into the list; that is, we will compare against
-:math:`\frac{n}{2}` items. Recall, however, that as *n* gets large,
-the coefficients, no matter what they are, become insignificant in our
-approximation, so the complexity of the sequential search, is
-:math:`O(n)`. :ref:`Table 1 <tbl_seqsearchtable>` summarizes these results.
+E quanto ao caso médio? Na média, nós iremos encontrar o item mais ou menos
+na metade da lista, isto é, faremos :math:`\frac{n}{2}` comparações com outros
+elementos. Lembre-se, contudo, de que conforme *n* se torna grande, os coeficientes,
+independente de quais sejam, tornam-se insignificantes na nossa aproximação,
+então a complexidade da busca sequencial é :math:`O(n)`. A
+:ref:`Tabela 1 <tbl_seqsearchtable>` resume esses resultados.
 
 .. _tbl_seqsearchtable:
 
-.. table:: **Table 1: Comparisons Used in a Sequential Search of an Unordered List**
+.. table:: **Tabela 1: Comparações Realizadas numa Busca Sequencial de uma Lista Não Ordenada**
 
     ==================== ========================== ========================== ========================
-    **Case**                      **Best Case**             **Worst Case**         **Average Case**
+    **Caso**                   **Melhor Caso**             **Pior Caso**            **Caso Médio**
     ==================== ========================== ========================== ========================
-    item is present      :math:`1`                  :math:`n`                  :math:`\frac{n}{2}`
-    item is not present  :math:`n`                  :math:`n`                  :math:`n`
+    item presente        :math:`1`                  :math:`n`                  :math:`\frac{n}{2}`
+    item não presente    :math:`n`                  :math:`n`                  :math:`n`
     ==================== ========================== ========================== ========================
 
 
