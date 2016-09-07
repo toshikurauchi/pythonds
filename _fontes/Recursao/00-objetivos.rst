@@ -2,24 +2,35 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-Objectives
-----------
+.. Objectives
+   ----------
 
-The goals for this chapter are as follows:
+.. The goals for this chapter are as follows:
+   -  To understand that complex problems that may otherwise be difficult
+      to solve may have a simple recursive solution.
+   -  To learn how to formulate programs recursively.
+   -  To understand and apply the three laws of recursion.
+   -  To understand recursion as a form of iteration.
+   -  To implement the recursive formulation of a problem.
+   -  To understand how recursion is implemented by a computer system.
 
--  To understand that complex problems that may otherwise be difficult
-   to solve may have a simple recursive solution.
+Objetivos
+---------
 
--  To learn how to formulate programs recursively.
+Os objetivos desse capítulo são os seguintes:
 
--  To understand and apply the three laws of recursion.
+-  Entender que problemas complexos que de outra forma seriam difíceis de resolver
+   podem ter soluções recursivas simples.
 
--  To understand recursion as a form of iteration.
+-  Aprender como formular problemas recursivamente.
 
--  To implement the recursive formulation of a problem.
+-  Entender e aplicar as três leis da recursão.
 
--  To understand how recursion is implemented by a computer system.
+-  Entender recursão como uma forma de iteração.
 
+-  Implementar a formulação recursiva de um problema.
+
+-  Entender como recursão é implementada em um sistema computacional.
 
 .. index:: mutable, immutable, tuple
 .. index:: fractal, fractal; Koch, Koch fractal
