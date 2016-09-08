@@ -98,40 +98,42 @@ então a complexidade da busca sequencial é :math:`O(n)`. A
 
 
 
+Nós presumimos anteriormente que os itens em nossa coleção foram
+posicionados aleatoriamente de modo que não houvesse ordem relativa
+entre eles. O que aconteceria à busca sequencial se os itens estivessem
+ordenados de alguma forma? Conseguiríamos obter alguma eficiência
+na nossa técnica de busca?
 
-We assumed earlier that the items in our collection had been randomly
-placed so that there is no relative order between the items. What would
-happen to the sequential search if the items were ordered in some way?
-Would we be able to gain any efficiency in our search technique?
+Suponha que a lista de itens tenha sido construída de tal forma que eles
+tenham sido posicionados em ordem crescente, do menor para o maior. Se
+o item que estamos buscando estiver na lista, a probabilidade de ele estar
+em uma das *n* posições continua a mesma. Nós ainda temos que fazer o mesmo
+número de comparações para encontrá-lo. Contudo, se o item não estiver
+presente, há uma pequena vantagem. A :ref:`Figura 2 <fig_seqsearch2>`
+exemplifica isso conforme o algoritmo procura pelo item 50. Observe que os
+elementos continuam sendo comparados sequencialmente até o 54. Mas nesse
+ponto, porém, temos uma informação extra. Além de o item 54 não ser aquele
+que estamos procurando, não é possível que o nosso item esteja em alguma
+posição superior a 54, pois a lista está ordenada. Nesse caso, o algoritmo
+não precisa continuar procurando no restante da lista para informar que o
+item não foi encontrado. Ele pode parar imediatamente. O
+:ref:`CodeLens 2 <lst_seqsearchpython2>` mostra essa variação da
+função de busca sequencial.
 
-Assume that the list of items was constructed so that the items were in
-ascending order, from low to high. If the item we are looking for is
-present in the list, the chance of it being in any one of the *n*
-positions is still the same as before. We will still have the same
-number of comparisons to find the item. However, if the item is not
-present there is a slight advantage. :ref:`Figure 2 <fig_seqsearch2>` shows this
-process as the algorithm looks for the item 50. Notice that items are
-still compared in sequence until 54. At this point, however, we know
-something extra. Not only is 54 not the item we are looking for, but no
-other elements beyond 54 can work either since the list is sorted. In
-this case, the algorithm does not have to continue looking through all
-of the items to report that the item was not found. It can stop
-immediately. :ref:`CodeLens 2 <lst_seqsearchpython2>` shows this variation of the
-sequential search function.
 
 .. _fig_seqsearch2:
 
 .. figure:: Figures/seqsearch2.png
    :align: center
 
-   Figure 2: Sequential Search of an Ordered List of Integers
+   Figura 2: Busca Sequencial em uma Lista Ordenada de Inteiros
 
 
 
 .. _lst_seqsearchpython2:
 
 .. codelens:: search2
-    :caption: Sequential Search of an Ordered List
+    :caption: Busca Sequencial em uma Lista Ordenada
 
     def orderedSequentialSearch(alist, item):
         pos = 0
@@ -152,27 +154,29 @@ sequential search function.
     print(orderedSequentialSearch(testlist, 3))
     print(orderedSequentialSearch(testlist, 13))
 
-:ref:`Table 2 <tbl_seqsearchtable2>` summarizes these results. Note that in the best
-case we might discover that the item is not in the list by looking at
-only one item. On average, we will know after looking through only
-:math:`\frac {n}{2}` items. However, this technique is still
-:math:`O(n)`. In summary, a sequential search is improved by ordering
-the list only in the case where we do not find the item.
+A :ref:`Tabela 2 <tbl_seqsearchtable2>` resume esses resultados. Observe que
+no melhor caso nós temos condições de saber se o item não está na lista
+olhando apenas para um elemento. Na média, iremos descobrir isso depois de
+procurar por apenas :math:`\frac {n}{2}` itens. No entanto, essa técnica
+é ainda :math:`O(n)`. Em suma, a busca sequencial é melhorada quando
+sabemos que a lista está ordenada somente no caso em que não encontramos
+o item.
+
 
 .. _tbl_seqsearchtable2:
 
-.. table:: **Table 2: Comparisons Used in Sequential Search of an Ordered List**
+.. table:: **Tabela 2: Comparações Usadas na Busca Sequencial de uma Lista Ordenada**
 
 
-     ================ ============== ==============  ===================
-                      **Best Case**  **Worst Case**  **Average Case**
-     ================ ============== ==============  ===================
-     item is present  :math:`1`        :math:`n`     :math:`\frac{n}{2}`
-     item not present :math:`1`        :math:`n`     :math:`\frac{n}{2}`
-     ================ ============== ==============  ===================
+     ================= =============== ==============  ===================
+                       **Melhor Caso**  **Pior Caso**  **Caso Médio**
+     ================= =============== ==============  ===================
+     item presente     :math:`1`        :math:`n`     :math:`\frac{n}{2}`
+     item não presente :math:`1`        :math:`n`     :math:`\frac{n}{2}`
+     ================= =============== ==============  ===================
 
 
-.. admonition:: Self Check
+.. admonition:: Auto-avaliação
 
    .. mchoice:: question_SRCH_1
       :correct: d
@@ -180,12 +184,12 @@ the list only in the case where we do not find the item.
       :answer_b: 10
       :answer_c: 4
       :answer_d: 2
-      :feedback_a: Five comparisons would get the second 18 in the list.
-      :feedback_b: You do not need to search the entire list, only until you find the key you are looking for.
-      :feedback_c: No, remember in a sequential search you start at the beginning and check each key until you find what you are looking for or exhaust the list.
-      :feedback_d: In this case only 2 comparisons were needed to find the key.
+      :feedback_a: Cinco comparações iriam devolver o segundo 18 na lista.
+      :feedback_b: Você não precisa buscar na lista toda, apenas até encontrar a chave que você está procurando.
+      :feedback_c: Não, lembre-se de que numa busca sequencial você inicia pelo começo e checa cada chave até encontrar o que você está procurando ou a lista terminar.
+      :feedback_d: Neste caso, apenas 2 comparações foram necessárias para encontrar a chave.
 
-      Suppose you are doing a sequential search of the list [15, 18, 2, 19, 18, 0, 8, 14, 19, 14].  How many comparisons would you need to do in order to find the key 18?
+      Suponha que você esteja fazendo uma busca sequencial na lista [15, 18, 2, 19, 18, 0, 8, 14, 19, 14]. Quantas comparações você precisaria fazer para encontrar a chave 18?
 
    .. mchoice:: question_SRCH_2
       :correct: c
@@ -193,9 +197,9 @@ the list only in the case where we do not find the item.
       :answer_b: 5
       :answer_c: 7
       :answer_d: 6
-      :feedback_a:  You do not need to search the entire list, since it is ordered you can stop searching when you have compared with a value larger than the key.
-      :feedback_b: Since 11 is less than the key value 13 you need to keep searching.
-      :feedback_c: Since 14 is greater than the key value 13 you can stop.
-      :feedback_d: Because 12 is less than the key value 13 you need to keep going.
+      :feedback_a: Você não precisa buscar na lista inteira. Como ela está ordenada, você pode parar de procurar quando você fizer uma comparação com um valor maior do que a chave.
+      :feedback_b: Como 11 é menor do que 13, você precisa continuar procurando.
+      :feedback_c: Como 14 é maior do que 13, você pode parar.
+      :feedback_d: Como 12 é menor do que 13, você precisa continuar procurando.
 
-      Suppose you are doing a sequential search of the ordered list [3, 5, 6, 8, 11, 12, 14, 15, 17, 18].  How many comparisons would you need to do in order to find the key 13?
+      Suponha que você esteja fazendo uma busca sequencial na lista ordenada [3, 5, 6, 8, 11, 12, 14, 15, 17, 18]. Quantas comparações você precisaria fazer para encontrar a chave 13?
