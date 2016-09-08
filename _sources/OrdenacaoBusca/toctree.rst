@@ -1,5 +1,5 @@
-Sorting and Searching
-:::::::::::::::::::::
+Ordenação e Busca
+:::::::::::::::::
 
 .. toctree::
     :caption: Ordenação e Busca
@@ -8,7 +8,7 @@ Sorting and Searching
     Objetivos.rst
     buscando.rst
     BuscaSequencial.rst
-    TheBinarySearch.rst
+    BuscaBinaria.rst
     Hashing.rst
     sorting.rst
     TheBubbleSort.rst

@@ -2,28 +2,29 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-The Binary Search
-~~~~~~~~~~~~~~~~~
+A Busca Binária
+~~~~~~~~~~~~~~~
 
-It is possible to take greater advantage of the ordered list if we are
-clever with our comparisons. In the sequential search, when we compare
-against the first item, there are at most :math:`n-1` more items to
-look through if the first item is not what we are looking for. Instead
-of searching the list in sequence, a **binary search** will start by
-examining the middle item. If that item is the one we are searching for,
-we are done. If it is not the correct item, we can use the ordered
-nature of the list to eliminate half of the remaining items. If the item
-we are searching for is greater than the middle item, we know that the
-entire lower half of the list as well as the middle item can be
-eliminated from further consideration. The item, if it is in the list,
-must be in the upper half.
+É possível obter uma grande vantagem do fato de uma lista estar ordenada se
+formos espertos o bastante com as nossas comparações. Na busca sequencial,
+quando iniciamos a comparação a partir do primeiro item, há no máximo mais
+:math:`n-1` elementos a serem buscados se o primeiro item não era o que
+estávamos procurando. Em vez de procurar o item sequencialmente, uma
+**busca binária** irá começar examinando o item do meio. Se esse elemento
+é o que estamos buscando, a procura terminou. Se não for o item correto,
+podemos utilizar o fato da lista estar ordenada para eliminar metade dela.
+Se o item que estamos procurando for maior que o elemento do meio, sabemos
+que a metade inferior (contando com o item do meio) não precisa mais ser
+levada em consideração. O item, se estiver na lista, necessariamente está
+na metade superior.
 
-We can then repeat the process with the upper half. Start at the middle
-item and compare it against what we are looking for. Again, we either
-find it or split the list in half, therefore eliminating another large
-part of our possible search space. :ref:`Figure 3 <fig_binsearch>` shows how this
-algorithm can quickly find the value 54. The complete function is shown
-in :ref:`CodeLens 3 <lst_binarysearchpy>`.
+Podemos então repetir o processo com a parte superior. Começamos pelo item
+do meio e o comparamos com o que estamos buscando. Novamente, ou o item do
+meio é igual ao que buscamos, ou divimos a lista no meio, eliminando então
+outra parte considerável do nosso espaço de busca. A
+:ref:`Figura 3 <fig_binsearch>` mostra como esse algoritmo consegue encontrar
+rapidamente o valor 54. A função completa é exibida em
+:ref:`CodeLens 3 <lst_binarysearchpy>`.
 
 
 .. _fig_binsearch:
@@ -31,13 +32,13 @@ in :ref:`CodeLens 3 <lst_binarysearchpy>`.
 .. figure:: Figures/binsearch.png
    :align: center
 
-   Figure 3: Binary Search of an Ordered List of Integers
+   Figura 3: Busca Binária em Uma Lista Ordenada de Inteiros
 
 
 .. _lst_binarysearchpy:
 
 .. codelens:: search3
-    :caption: Binary Search of an Ordered List
+    :caption: Busca Binária em uma Lista Ordenada
 
     def binarySearch(alist, item):
         first = 0
@@ -113,15 +114,15 @@ answer.
 
 .. table:: **Table 3: Tabular Analysis for a Binary Search**
 
-    ======================== ====================================== 
-             **Comparisons**   **Approximate Number of Items Left** 
-    ======================== ====================================== 
-                           1                   :math:`\frac {n}{2}` 
-                           2                   :math:`\frac {n}{4}` 
-                           3                   :math:`\frac {n}{8}` 
-                         ...                                        
-                           i                 :math:`\frac {n}{2^i}` 
-    ======================== ====================================== 
+    ======================== ======================================
+             **Comparisons**   **Approximate Number of Items Left**
+    ======================== ======================================
+                           1                   :math:`\frac {n}{2}`
+                           2                   :math:`\frac {n}{4}`
+                           3                   :math:`\frac {n}{8}`
+                         ...
+                           i                 :math:`\frac {n}{2^i}`
+    ======================== ======================================
 
 
 When we split the list enough times, we end up with a list that has just
@@ -183,4 +184,3 @@ performing a sequential search from the start may be the best choice.
       :feedback_d: Binary search starts at the midpoint and halves the list each time. It is done when the list is empty.
 
       Suppose you have the following sorted list [3, 5, 6, 8, 11, 12, 14, 15, 17, 18] and are using the recursive binary search algorithm.  Which group of numbers correctly shows the sequence of comparisons used to search for the key 16?
-
