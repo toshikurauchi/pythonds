@@ -37,4 +37,6 @@ Padronização das traduções
 - **String**: string(?)
 - **Check off**: marcação (nome do método de detecção de anagramas)
 - **List (Python)**: lista
+- **Dictionary (Python)**: dicionário
 - **slice operator**: operador de fatiamento
+- **Named parameter**: parâmetro nomeado

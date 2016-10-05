@@ -9,8 +9,8 @@ Análise
     OQueEAnaliseDeAlgoritmos.rst
     BigONotation.rst
     ExemploDeDeteccaoDeAnagramas.rst
-    PerformanceofPythonDataStructures.rst
-    Lists.rst
+    PerformanceDeEstruturasDeDadosDoPython.rst
+    Listas.rst
     Dictionaries.rst
     Summary.rst
     KeyTerms.rst
