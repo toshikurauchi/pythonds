@@ -11,7 +11,7 @@ Análise
     ExemploDeDeteccaoDeAnagramas.rst
     PerformanceDeEstruturasDeDadosDoPython.rst
     Listas.rst
-    Dictionaries.rst
+    Dicionarios.rst
     Summary.rst
     KeyTerms.rst
     DiscussionQuestions.rst
