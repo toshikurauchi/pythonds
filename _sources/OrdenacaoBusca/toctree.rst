@@ -6,11 +6,11 @@ Ordenação e Busca
     :maxdepth: 2
 
     Objetivos.rst
-    buscando.rst
+    busca.rst
     BuscaSequencial.rst
     BuscaBinaria.rst
     Hashing.rst
-    sorting.rst
+    ordenacao.rst
     TheBubbleSort.rst
     TheSelectionSort.rst
     TheInsertionSort.rst

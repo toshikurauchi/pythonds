@@ -2,8 +2,8 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-Buscando
---------
+Busca
+-----
 
 Vamos dirigir nossa atenção para alguns dos problemas mais recorrentes
 em computação: busca e ordenação. Nesta seção, iremos estudar o problema

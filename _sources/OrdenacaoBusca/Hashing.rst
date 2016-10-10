@@ -5,36 +5,38 @@
 Hashing
 ~~~~~~~
 
-In previous sections we were able to make improvements in our search
-algorithms by taking advantage of information about where items are
-stored in the collection with respect to one another. For example, by
-knowing that a list was ordered, we could search in logarithmic time
-using a binary search. In this section we will attempt to go one step
-further by building a data structure that can be searched in
-:math:`O(1)` time. This concept is referred to as **hashing**.
+Nas seções anteriores conseguimos uma melhora nos nossos algoritmos
+de busca por meio da informação de como cada item de uma coleção
+é armazenado em relação ao outro. Por exemplo, sabendo que uma lista
+estava ordenada, nós pudemos realizar uma busca em tempo logarítmico
+fazendo uma busca binária. Nesta seção nós tentaremos dar um passo além
+construindo uma estrutura de dados cuja busca tem tempo :math:`O(1)`.
+Esse conceito é conhecido como **hashing**.
 
-In order to do this, we will need to know even more about where the
-items might be when we go to look for them in the collection. If every
-item is where it should be, then the search can use a single comparison
-to discover the presence of an item. We will see, however, that this is
-typically not the case.
+Para fazer isso, precisaremos saber mais ainda sobre onde os itens podem
+estar quando nós procurarmos por eles na coleção. Se cada item está onde
+deveria, então a busca pode ser feita usando uma única comparação para
+descobrir sua presença. Nós iremos ver, contudo, que isso não é o que
+acontece na prática.
 
-A **hash table** is a collection of items which are stored in such a way
-as to make it easy to find them later. Each position of the hash table,
-often called a **slot**, can hold an item and is named by an integer
-value starting at 0. For example, we will have a slot named 0, a slot
-named 1, a slot named 2, and so on. Initially, the hash table contains
-no items so every slot is empty. We can implement a hash table by using
-a list with each element initialized to the special Python value
-``None``. :ref:`Figure 4 <fig_hashtable1>` shows a hash table of size :math:`m=11`.
-In other words, there are *m* slots in the table, named 0 through 10.
+Uma **tabela de hash** é uma coleção de itens que são armazenados de maneira
+a serem encontrados com facilidade mais tarde. Cada posição da tabela de
+hash, geralmente denominada **slot**, pode guardar um item e possui um
+rótulo inteiro começando a partir de 0. Por exemplo, nós teremos
+um slot com rótulo 0, um slot com rótulo 1, um slot com rótulo 2 e assim
+por diante. Inicialmente, a tabela de hash não contém nenhum item, então
+todos os slots estão vazios. Nós podemos implementar uma tabela de hash
+usando uma lista com cada elemento inicializado pelo valor especial
+``None`` do Python. A :ref:`Figura 4 <fig_hashtable1>` mostra uma tabela de
+hash de tamanho :math:`m=11`. Em outras palavras, existem *m* slots na tabela,
+rotulados de 0 a 10.
 
 .. _fig_hashtable1:
 
 .. figure:: Figures/hashtable.png
    :align: center
 
-   Figure 4: Hash Table with 11 Empty Slots
+   Figura 4: Tabela de Hash com 11 Slots Vazios
 
 
 The mapping between an item and the slot where that item belongs in the
@@ -54,16 +56,16 @@ functions, since the result must be in the range of slot names.
 .. table:: **Table 4: Simple Hash Function Using Remainders**
 
 
-    ================= ================ 
-             **Item**   **Hash Value** 
-    ================= ================ 
-                   54               10 
-                   26                4 
-                   93                5 
-                   17                6 
-                   77                0 
-                   31                9 
-    ================= ================ 
+    ================= ================
+             **Item**   **Hash Value**
+    ================= ================
+                   54               10
+                   26                4
+                   93                5
+                   17                6
+                   77                0
+                   31                9
+    ================= ================
 
 
 Once the hash values have been computed, we can insert each item into
@@ -152,16 +154,16 @@ understand how these values were computed.
 .. table:: **Table 5: Comparison of Remainder and Mid-Square Methods**
 
 
-    ================= =============== ================ 
-             **Item**   **Remainder**   **Mid-Square** 
-    ================= =============== ================ 
-                   54              10                3 
-                   26               4                7 
-                   93               5                9 
-                   17               6                8 
-                   77               0                4 
-                   31               9                6 
-    ================= =============== ================ 
+    ================= =============== ================
+             **Item**   **Remainder**   **Mid-Square**
+    ================= =============== ================
+                   54              10                3
+                   26               4                7
+                   93               5                9
+                   17               6                8
+                   77               0                4
+                   31               9                6
+    ================= =============== ================
 
 
 We can also create hash functions for character-based items such as
@@ -204,7 +206,7 @@ to ``tablesize``-1.
             sum = sum + ord(astring[pos])
 
         return sum%tablesize
-        
+
 
 It is interesting to note that when using this hash function, anagrams
 will always be given the same hash value. To remedy this, we could use
@@ -547,13 +549,13 @@ be available. We leave the remaining methods as exercises.
 
     def __setitem__(self,key,data):
         self.put(key,data)
-        
-        
-        
+
+
+
 .. highlight:: python
     :linenothreshold: 500
-    
-    
+
+
 
 The following session shows the ``HashTable`` class in action. First we
 will create a hash table and store some items with integer keys and
@@ -601,7 +603,7 @@ The complete hash table example can be found in ActiveCode 1.
 .. activecode:: hashtablecomplete
    :caption: Complete Hash Table Example
    :hidecode:
-   
+
    class HashTable:
        def __init__(self):
            self.size = 11
@@ -678,8 +680,8 @@ The complete hash table example can be found in ActiveCode 1.
    H[20]='duck'
    print(H[20])
    print(H[99])
-   
-    
+
+
 
 Analysis of Hashing
 ^^^^^^^^^^^^^^^^^^^
