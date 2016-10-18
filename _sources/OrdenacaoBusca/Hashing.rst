@@ -9,97 +9,96 @@ Nas seções anteriores conseguimos uma melhora nos nossos algoritmos
 de busca por meio da informação de como cada item de uma coleção
 é armazenado em relação ao outro. Por exemplo, sabendo que uma lista
 estava ordenada, nós pudemos realizar uma busca em tempo logarítmico
-fazendo uma busca binária. Nesta seção nós tentaremos dar um passo além
+fazendo uma busca binária. Nesta seção tentaremos dar um passo além,
 construindo uma estrutura de dados cuja busca tem tempo :math:`O(1)`.
 Esse conceito é conhecido como **hashing**.
 
-Para fazer isso, precisaremos saber mais ainda sobre onde os itens podem
-estar quando nós procurarmos por eles na coleção. Se cada item está onde
+Para fazer isso, precisaremos saber mais sobre onde os itens poderão
+estar quando procurarmos por eles na coleção. Se cada item está onde
 deveria, então a busca pode ser feita usando uma única comparação para
-descobrir sua presença. Nós iremos ver, contudo, que isso não é o que
+descobrir sua presença. Iremos perceber, contudo, que isso não é o que
 acontece na prática.
 
-Uma **tabela de hash** é uma coleção de itens que são armazenados de maneira
-a serem encontrados com facilidade mais tarde. Cada posição da tabela de
-hash, geralmente denominada **slot**, pode guardar um item e possui um
-rótulo inteiro começando a partir de 0. Por exemplo, nós teremos
-um slot com rótulo 0, um slot com rótulo 1, um slot com rótulo 2 e assim
-por diante. Inicialmente, a tabela de hash não contém nenhum item, então
-todos os slots estão vazios. Nós podemos implementar uma tabela de hash
+Uma **tabela de dispersão** (ou hash table) é uma coleção de itens que são
+armazenados de maneira a serem encontrados com facilidade mais tarde. Cada
+posição da tabela de dispersão, geralmente denominada **índice** (ou slot), pode
+guardar um item e possui um rótulo inteiro começando a partir de 0. Por exemplo,
+teremos um índice com rótulo 0, um índice com rótulo 1, outro com rótulo 2 e assim
+por diante. Inicialmente, a tabela de dispersão não contém nenhum item, então
+todos os índices estão vazios. Nós podemos implementar uma tabela de dispersão
 usando uma lista com cada elemento inicializado pelo valor especial
 ``None`` do Python. A :ref:`Figura 4 <fig_hashtable1>` mostra uma tabela de
-hash de tamanho :math:`m=11`. Em outras palavras, existem *m* slots na tabela,
-rotulados de 0 a 10.
+dispersão de tamanho :math:`m=11`. Em outras palavras, existem *m* índices na
+tabela, rotulados de 0 a 10.
 
 .. _fig_hashtable1:
 
 .. figure:: Figures/hashtable.png
    :align: center
 
-   Figura 4: Tabela de Hash com 11 Slots Vazios
+   Figura 4: Tabela de Dispersão com 11 Índices Vazios
 
-
-The mapping between an item and the slot where that item belongs in the
-hash table is called the **hash function**. The hash function will take
-any item in the collection and return an integer in the range of slot
-names, between 0 and *m*-1. Assume that we have the set of integer items
-54, 26, 93, 17, 77, and 31. Our first hash function, sometimes referred
-to as the “remainder method,” simply takes an item and divides it by the
-table size, returning the remainder as its hash value
-(:math:`h(item)=item \% 11`). :ref:`Table 4 <tbl_hashvalues1>` gives all of the
-hash values for our example items. Note that this remainder method
-(modulo arithmetic) will typically be present in some form in all hash
-functions, since the result must be in the range of slot names.
+O mapeamento entre a chave e o índice ao qual ela pertence na tabela é
+conhecido como a **função de espalhamento** (ou hash function). A função de
+espalhamento irá receber qualquer item na coleção e irá retornar um inteiro
+dentro do intervalo dos índices, isto é, entre 0 e *m*-1. Suponha, por exemplo,
+o conjunto de inteiros formado por 54, 26, 93, 17, 77 e 31. Nossa primeira
+função de hash, às vezes chamada de "método do resto", simplesmente pega um item
+e o divide pelo tamanho da tabela, retornando o resto da divisão e o seu valor
+de espalhamento (:math:`h(item)=item \% 11`). A :ref:`Tabela 4 <tbl_hashvalues1>`
+mostra todos os valores de espalhamento para os itens do nosso conjunto. Observe
+que o método do resto (artimética modular) tipicamente estará presente de algum
+modo em todas as funções de espalhamento, já que o resultado deve estar dentro do
+intervalo dos índices.
 
 .. _tbl_hashvalues1:
 
-.. table:: **Table 4: Simple Hash Function Using Remainders**
+.. table:: **Tabela 4: Função Simples de Espalhamento Usando o Resto da Divisão**
 
 
-    ================= ================
-             **Item**   **Hash Value**
-    ================= ================
-                   54               10
-                   26                4
-                   93                5
-                   17                6
-                   77                0
-                   31                9
-    ================= ================
+    ================= ===========================
+             **Item**   **Valor de Espalhamento**
+    ================= ===========================
+                   54                          10
+                   26                           4
+                   93                           5
+                   17                           6
+                   77                           0
+                   31                           9
+    ================= ===========================
 
 
-Once the hash values have been computed, we can insert each item into
-the hash table at the designated position as shown in
-:ref:`Figure 5 <fig_hashtable2>`. Note that 6 of the 11 slots are now occupied. This
-is referred to as the **load factor**, and is commonly denoted by
-:math:`\lambda = \frac {numberofitems}{tablesize}`. For this example,
-:math:`\lambda = \frac {6}{11}`.
-
+Uma vez que os valores de espalhamento tenham sido computados, podemos inserir
+cada item na tabela de dispersão na posição designada, como mostrado na
+:ref:`Figura 5 <fig_hashtable2>`. Note que 6 dos 11 índices estão agora ocupados.
+Essa razão é conhecida como **fator de carga** e é comumente denotada por
+:math:`\lambda = \frac {numerodeitens}{tamanhodatabela}`. Para o nosso exemplo,
+o fator de carga é :math:`\lambda = \frac {6}{11}`.
 
 .. _fig_hashtable2:
 
 .. figure:: Figures/hashtable2.png
    :align: center
 
-   Figure 5: Hash Table with Six Items
+   Figura 5: Tabela de Dispersão com Seis Itens
 
+Agora, quando queremos procurar um item, simplesmente utilizamos a função de
+espalhamento para calcular o índice correspondente da chave e acessamos a
+tabela de dispersão para verificar se ela está presente. Essa operação de
+busca é :math:`O(1)`, já que é necessário apenas um tempo constante para
+computar o valor de espalhamento e acessar a posição apontada pelo índice
+correspondente na tabela. Se tudo estiver onde deveria, encontramos um
+algoritmo de busca de tempo constante.
 
-Now when we want to search for an item, we simply use the hash function
-to compute the slot name for the item and then check the hash table to
-see if it is present. This searching operation is :math:`O(1)`, since
-a constant amount of time is required to compute the hash value and then
-index the hash table at that location. If everything is where it should
-be, we have found a constant time search algorithm.
+Você provavelmente já deve ter notado que essa técnica só irá funcionar se cada
+item for mapeado uma localização única na tabela de espalhamento. Por exemplo,
+se o item 44 fosse a próxima chave na nossa coleção, ele teria um valor de
+espalhamento de 0 (:math:`44 \% 11 == 0`). Como 77 também possui 0 como valor
+de espalhamento, teríamos um problema. Segundo a função de espalhamento,
+dois ou mais itens deveriam estar no mesmo índice. Isso é chamado de **colisão**.
+Claramente, colisões são um problema nesta técnica e iremos discuti-las mais
+tarde.
 
-You can probably already see that this technique is going to work only
-if each item maps to a unique location in the hash table. For example,
-if the item 44 had been the next item in our collection, it would have a
-hash value of 0 (:math:`44 \% 11 == 0`). Since 77 also had a hash
-value of 0, we would have a problem. According to the hash function, two
-or more items would need to be in the same slot. This is referred to as
-a **collision** (it may also be called a “clash”). Clearly, collisions
-create a problem for the hashing technique. We will discuss them in
-detail later.
 
 Hash Functions
 ^^^^^^^^^^^^^^

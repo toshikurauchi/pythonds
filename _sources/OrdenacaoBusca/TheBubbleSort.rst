@@ -2,42 +2,42 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-The Bubble Sort
-~~~~~~~~~~~~~~~
+O Bubble Sort
+~~~~~~~~~~~~~
+O **bubble sort** realiza múltiplas passagem por uma lista. Ele compara itens
+adjacentes e troca aqueles que estão fora de ordem. Cada passagem pela lista
+coloca o próximo maior valor na sua posição correta. Em essência, cada item
+se desloca como uma "bolha" para a posição à qual pertence.
 
-The **bubble sort** makes multiple passes through a list. It compares
-adjacent items and exchanges those that are out of order. Each pass
-through the list places the next largest value in its proper place. In
-essence, each item “bubbles” up to the location where it belongs.
+A :ref:`Figura 1 <fig_bubblepass>` mostra a primeira passagem de um bubble sort.
+Os itens sombreados são aqueles que estão sendo comparados para verificar se estão
+fora de ordem. Se existem *n* itens na lista, então existem :math:`n-1` pares de
+itens que precisam ser comparados na primeira passagem. É importante observar
+que o maior valor na lista esteja em alguma comparação, ele será continuamente
+empurrado até o fim da passagem.
 
-:ref:`Figure 1 <fig_bubblepass>` shows the first pass of a bubble sort. The shaded
-items are being compared to see if they are out of order. If there are
-*n* items in the list, then there are :math:`n-1` pairs of items that
-need to be compared on the first pass. It is important to note that once
-the largest value in the list is part of a pair, it will continually be
-moved along until the pass is complete.
 
 .. _fig_bubblepass:
 
 .. figure:: Figures/bubblepass.png
    :align: center
 
-   Figure 1: ``bubbleSort``: The First Pass
+   Figura 1: ``bubbleSort``: A Primeira Passagem
 
+No começo da segunda passagem, o maior valor agora está ordenado. Ainda existem
+:math:`n-1` itens para serem ordenados, o que significa que teremos
+:math:`n-2` pares de comparação. Como cada passagem colocar o próximo maior
+valor encontrado no lugar certo, o número total de passagens necessárias será
+:math:`n-1`. Depois de completar :math:`n-1` passagens, o menor item estará
+na posição correta e nenhum processamento adicional será necessário. O
+:ref:`ActiveCode 1 <lst_bubble>` mostra a função ``bubbleSort`` completa.
+Ela recebe uma lista como parâmetro e a modifica, trocando os itens conforme a
+necessidade.
 
-At the start of the second pass, the largest value is now in place.
-There are :math:`n-1` items left to sort, meaning that there will be
-:math:`n-2` pairs. Since each pass places the next largest value in
-place, the total number of passes necessary will be :math:`n-1`. After
-completing the :math:`n-1` passes, the smallest item must be in the
-correct position with no further processing required. :ref:`ActiveCode 1 <lst_bubble>`
-shows the complete ``bubbleSort`` function. It takes the list as a
-parameter, and modifies it by exchanging items as necessary.
-
-The exchange operation, sometimes called a “swap,” is slightly different
-in Python than in most other programming languages. Typically, swapping
-two elements in a list requires a temporary storage location (an
-additional memory location). A code fragment such as
+A operação de troca, às vezes chamada de "swap", é ligeiramente diferente
+em Python, quando comparada a outras linguagens de programação. Tipicamente,
+a troca de dois elementos numa lista requer o uso de uma variável para
+armazenamento temporário. O trecho de código abaixo
 
 ::
 
@@ -45,28 +45,29 @@ additional memory location). A code fragment such as
     alist[i] = alist[j]
     alist[j] = temp
 
-will exchange the `ith` and `jth` items in the list. Without the
-temporary storage, one of the values would be overwritten.
+irá trocar os `i-ésimos` com os `j-ésimos` itens na lista. Sem a variável
+de armazenamento temorário, um dos valores seria sobrescrito.
 
-In Python, it is possible to perform simultaneous assignment. The
-statement ``a,b=b,a`` will result in two assignment statements being
-done at the same time (see :ref:`Figure 2 <fig_pythonswap>`). Using simultaneous
-assignment, the exchange operation can be done in one statement.
+Em Python, porém, é possível realizar atribuições simultâneas. A expressão
+``a,b=b,a`` irá resultar em duas atribuições sendo feitas ao mesmo tempo
+(see :ref:`Figure 2 <fig_pythonswap>`). Usando atribuições simultâneas,
+a troca pode ser feita em uma única linha.
 
-Lines 5-7 in :ref:`ActiveCode 1 <lst_bubble>` perform the exchange of the :math:`i` and
-:math:`(i+1)th` items using the three–step procedure described
-earlier. Note that we could also have used the simultaneous assignment
-to swap the items.
+As linhas 5-7 em :ref:`ActiveCode 1 <lst_bubble>` realizam a troca entre os
+itens :math:`i` e :math:`(i+1)` utilizando o procedimento de três passos
+descrito anteriormente. Note que poderíamos ter usado a atribuição
+simultânea para trocar os itens.
+
 
 .. _fig_pythonswap:
 
 .. figure:: Figures/swap.png
    :align: center
 
-   Figure 2: Exchanging Two Values in Python
+   Figura 2: Trocando Dois Valores em Python
 
-The following activecode example shows the complete ``bubbleSort`` function working on the list
-shown above.
+O exemplo de activecode a seguir mostra a função ``bubbleSort`` completa
+utilizando a lista mostrada acima.
 
 
 
@@ -85,7 +86,7 @@ shown above.
     bubbleSort(alist)
     print(alist)
 
-The following animation shows ``bubbleSort`` in action.
+A animação abaixo mostra o ``bubbleSort`` em ação.
 
 .. animation:: bubble_anim
    :modelfile: sortmodels.js
@@ -93,10 +94,10 @@ The following animation shows ``bubbleSort`` in action.
    :model: BubbleSortModel
    :viewer: BarViewer
 
-.. For more detail, CodeLens 1 allows you to step through the algorithm.
+.. Para mais detalhes, o CodeLens 1 irá lhe guiar passo a passo pelo algoritmo.
 ..
 .. .. codelens:: bubbletrace
-..     :caption: Tracing the Bubble Sort
+..     :caption: Passo a Passo do BubbleSort
 ..
 ..     def bubbleSort(alist):
 ..         for passnum in range(len(alist)-1,0,-1):
@@ -109,7 +110,7 @@ The following animation shows ``bubbleSort`` in action.
 ..     alist = [54,26,93,17,77,31,44,55,20]
 ..     bubbleSort(alist)
 ..     print(alist)
-                    
+
 
 To analyze the bubble sort, we should note that regardless of how the
 items are arranged in the initial list, :math:`n-1` passes will be
@@ -173,7 +174,7 @@ to as the **short bubble**.
     alist=[20,30,40,90,50,60,70,80,100,110]
     shortBubbleSort(alist)
     print(alist)
-    
+
 .. Finally, here is ``shortBubbleSort`` in CodeLens (CodeLens 2)..
 ..
 .. .. codelens:: shortbubbletrace
@@ -195,7 +196,7 @@ to as the **short bubble**.
 ..     alist=[20,30,40,90,50,60,70,80,100,110]
 ..     shortBubbleSort(alist)
 ..     print(alist)
- 
+
 .. admonition:: Self Check
 
    .. mchoice:: question_sort_1
@@ -211,4 +212,3 @@ to as the **short bubble**.
 
        Suppose you have the following list of numbers to sort: <br>
        [19, 1, 9, 7, 3, 10, 13, 15, 8, 12] which list represents the partially sorted list after three complete passes of bubble sort?
- 
