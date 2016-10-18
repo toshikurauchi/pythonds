@@ -217,18 +217,18 @@ uso dos recursos computacionais dado um problema em particular.
        :answer_d: O(n^3)
        :correct: b
        :feedback_a: Em um exemplo como este você deve contar o número de laços aninhados. Especialmente os laços que dependem da mesma variável, neste caso, n.
-       :feedback_b: Um único laço aninhado como este é O(n^2)
-       :feedback_c: log n tipicamente é indicado por um problema que é feito iterativamente menor
+       :feedback_b: Um único laço aninhado como este é O(n^2).
+       :feedback_c: log n tipicamente é indicado por um problema que é feito iterativamente menor.
        :feedback_d: Em um exemplo como este você deve contar o número de laços aninhados. Especialmente os laços que dependem da mesma variável, neste caso, n. 
 
-       Given the following code fragment, what is its Big-O running time?
+       Dado o seguinte trecho de código, qual é o seu tempo de execução em Notação O?
 
        .. code-block:: python
 
-         test = 0
+         teste = 0
          for i in range(n):
             for j in range(n):
-               test = test + i * j
+               teste = teste + i * j
 
    .. mchoice:: analysis_2
        :answer_a: O(n)
@@ -236,21 +236,21 @@ uso dos recursos computacionais dado um problema em particular.
        :answer_c: O(log n)
        :answer_d: O(n^3)
        :correct: a
-       :feedback_b: Be careful, in counting loops you want to make sure the loops are nested.
-       :feedback_d: Be careful, in counting loops you want to make sure the loops are nested.
-       :feedback_c: log n typically is indicated when the problem is iteratvely made smaller
-       :feedback_a: Even though there are two loops they are not nested.  You might think of this as O(2n) but we can ignore the constant 2.
+       :feedback_b: Cuidado, ao contar laços verifique que eles são aninhados.
+       :feedback_d: Cuidado, ao contar laços verifique que eles são aninhados.
+       :feedback_c: log n tipicamente é indicado por um problema que é feito iterativamente menor.
+       :feedback_a: Apesar de haver dois laços, eles não são aninhados. Você pode entender este caso como O(2n), mas podemos ignorar a constante 2.
 
-       Given the following code fragment what is its Big-O running time?
+       Dado o seguinte trecho de código, qual é o seu tempo de execução em Notação O?
 
        .. code-block:: python
 
-         test = 0
+         teste = 0
          for i in range(n):
-            test = test + 1
+            teste = teste + 1
 
          for j in range(n):
-            test = test - 1
+            teste = teste - 1
 
    .. mchoice:: analysis_3
        :answer_a: O(n)
@@ -258,12 +258,12 @@ uso dos recursos computacionais dado um problema em particular.
        :answer_c: O(log n)
        :answer_d: O(n^3)
        :correct: c
-       :feedback_a: Look carefully at the loop variable i.  Notice that the value of i is cut in half each time through the loop.  This is a big hint that the performance is better than O(n)
-       :feedback_b: Check again, is this a nested loop?
-       :feedback_d: Check again, is this a nested loop?       
-       :feedback_c: The value of i is cut in half each time through the loop so it will only take log n iterations.
+       :feedback_a: Olhe atentamente para a variável i do laço. Note que o valor de i é cortado pela metade cada a cada iteração. Esse é um grande indício de que a performance é melhor do que O(n).
+       :feedback_b: Verifique novamente, esse é um laço aninhado?
+       :feedback_d: Verifique novamente, esse é um laço aninhado?       
+       :feedback_c: O valor de i é cortado pela metade a cada iteração do laço, então serão necessárias somente log n iterações.
 
-       Given the following code fragment what is its Big-O running time?
+       Dado o seguinte trecho de código, qual é o seu tempo de execução em Notação O?
 
        .. code-block:: python
 

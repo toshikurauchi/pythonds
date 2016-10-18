@@ -37,9 +37,11 @@ Padronização das traduções
 - **String**: string(?)
 - **Check off**: marcação (nome do método de detecção de anagramas)
 - **List (Python)**: lista
+- **Dictionary (Python)**: dicionário
 - **slice operator**: operador de fatiamento
 - **hash table**: tabela de dispersão (PF)
 - **hash function**: função de espalhamento (PF)
 - **hash code**: código de espalhamento (PF)
 - **slot**: índice (PF)
 - **load factor**: fator de carga (PF)
+- **Named parameter**: parâmetro nomeado
