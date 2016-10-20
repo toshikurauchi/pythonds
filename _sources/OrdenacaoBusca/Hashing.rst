@@ -91,7 +91,7 @@ correspondente na tabela. Se tudo estiver onde deveria, encontramos um
 algoritmo de busca de tempo constante.
 
 Você provavelmente já deve ter notado que essa técnica só irá funcionar se cada
-item for mapeado uma localização única na tabela de espalhamento. Por exemplo,
+item for mapeado uma localização única na tabela de dispersão. Por exemplo,
 se o item 44 fosse a próxima chave na nossa coleção, ele teria um valor de
 espalhamento de 0 (:math:`44 \% 11 == 0`). Como 77 também possui 0 como valor
 de espalhamento, teríamos um problema. Segundo a função de espalhamento,
@@ -100,89 +100,94 @@ Claramente, colisões são um problema nesta técnica e iremos discuti-las mais
 tarde.
 
 
-Hash Functions
-^^^^^^^^^^^^^^
+Funções de Espalhamento
+^^^^^^^^^^^^^^^^^^^^^^^
 
-Given a collection of items, a hash function that maps each item into a
-unique slot is referred to as a **perfect hash function**. If we know
-the items and the collection will never change, then it is possible to
-construct a perfect hash function (refer to the exercises for more about
-perfect hash functions). Unfortunately, given an arbitrary collection of
-items, there is no systematic way to construct a perfect hash function.
-Luckily, we do not need the hash function to be perfect to still gain
-performance efficiency.
+Dada uma coleção de itens, uma função de espalhamento capaz de mapear cada item
+para um único índice é chamada de **função de espalhamento perfeita**. Se
+soubermos que os itens e a coleção nunca irá mudar, então é possível construir
+uma função de espalhamento perfeita (confira os exercícios para saber mais
+sobre funções de espalhamento perfeitas). Infelizmente, dada uma coleção
+arbitrária de itens, não existe uma maneira sistemática de contruir uma função
+de espalhamento perfeita. Felizmente, não precisamos que a função de
+espalhamento seja pefeita para ainda termos ganhos de desempenho.
 
-One way to always have a perfect hash function is to increase the size
-of the hash table so that each possible value in the item range can be
-accommodated. This guarantees that each item will have a unique slot.
-Although this is practical for small numbers of items, it is not
-feasible when the number of possible items is large. For example, if the
-items were nine-digit Social Security numbers, this method would require
-almost one billion slots. If we only want to store data for a class of
-25 students, we will be wasting an enormous amount of memory.
+Uma forma de sempre termos uma função de espalhamento perfeita é aumentar o
+tamanho da tabela de dispersão, de modo que cada valor possível no intervalo
+de itens possa ser acomodado. Isso garante que cada item terá um único índice.
+Embora isso seja algo prático para um número pequeno de itens, tal estratégia
+é inviável quando o número de itens é muito grande. Por exemplo, se os itens
+fossem os números de nove dígitos do INSS, esse método iria requerer quase
+um bilhão de índices. Se quiséssemos apenas armazenar os dados de uma sala de
+aula com 25 estudantes, estaríamos desperdiçando uma quantidade enorme
+de memória.
 
-Our goal is to create a hash function that minimizes the number of
-collisions, is easy to compute, and evenly distributes the items in the
-hash table. There are a number of common ways to extend the simple
-remainder method. We will consider a few of them here.
+Nosso objetivo é criar uma função de espalhamento que minimize o número de
+colisões, seja fácil de computar e distribua os itens uniformemente na
+tabela de dispersão. Há algumas maneiras conhecidas de estender o método do
+resto da divisão. Iremos considerar algumas delas agora.
 
-The **folding method** for constructing hash functions begins by
-dividing the item into equal-size pieces (the last piece may not be of
-equal size). These pieces are then added together to give the resulting
-hash value. For example, if our item was the phone number 436-555-4601,
-we would take the digits and divide them into groups of 2
-(43,65,55,46,01). After the addition, :math:`43+65+55+46+01`, we get
-210. If we assume our hash table has 11 slots, then we need to perform
-the extra step of dividing by 11 and keeping the remainder. In this case
-:math:`210\ \%\ 11` is 1, so the phone number 436-555-4601 hashes to
-slot 1. Some folding methods go one step further and reverse every other
-piece before the addition. For the above example, we get
-:math:`43+56+55+64+01 = 219` which gives :math:`219\ \%\ 11 = 10`.
+O **método de folding** para construir funções de espalhamento começa
+dividindo o item em pedaços de tamanhos iguais (o último pedaço pode não ser
+de tamanho igual). Esses pedaços são somados para então gerar o valor de
+espalhamento resultante. Por exemplo, se o nosso item fosse o número de
+telefone 436-555-4601, iríamos extrair os dígitos e dividi-los em grupos de 2
+(43, 65, 55, 46, 01). Depois de somar tudo, :math:`43+65+55+46+01`, teríamos
+210. Se a nossa tabela de dispersão tiver 11 índices, então precisaríamos
+realizar o passo adicional de dividir o resultado por 11 e pegar o resto
+da divisão. Nesse caso, :math:`210\ \%\ 11` é 1, então o número de telefone
+436-555-4601 seria mapeado para o índice 1. Alguns métodos de folding vão
+além e trocam a ordem dos pedaços antes de somá-los. Para o exemplo acima,
+teríamos algo como :math:`43+56+55+64+01 = 219`, o que resulta em
+:math:`219\ \%\ 11 = 10`.
 
-Another numerical technique for constructing a hash function is called
-the **mid-square method**. We first square the item, and then extract
-some portion of the resulting digits. For example, if the item were 44,
-we would first compute :math:`44 ^{2} = 1,936`. By extracting the
-middle two digits, 93, and performing the remainder step, we get 5
-(:math:`93\ \%\ 11`). :ref:`Table 5 <tbl_hashvalues2>` shows items under both the
-remainder method and the mid-square method. You should verify that you
-understand how these values were computed.
+Outra técnica numérica para construir a função de espalhamento é conhecida como
+**método do quadrado do meio**. Nela, elevamos primeiro o item ao quadrado e
+depois extraímos uma parte dos dígitos resultantes. Por exemplo, se o item
+fosse 44, primeiro calculamos :math:`44 ^{2} = 1.936`. Extraindo os dois
+dígitos do meio, 93, e realizando o passo de pegar o resto da divisão, ficamos
+com 5 (:math:`93\ \%\ 11`). A :ref:`Tabela 5 <tbl_hashvalues2>` mostra valores
+de espalhamento calculados tanto para o método do resto da divisão quanto para
+o do quadrado do meio. Verifique se você entendeu como esses valores foram
+calculados.
+
 
 .. _tbl_hashvalues2:
 
-.. table:: **Table 5: Comparison of Remainder and Mid-Square Methods**
+.. table:: **Tabela 5: Comparação dos Métodos de Resto e do Quadrado do Meio**
 
 
-    ================= =============== ================
-             **Item**   **Remainder**   **Mid-Square**
-    ================= =============== ================
-                   54              10                3
-                   26               4                7
-                   93               5                9
-                   17               6                8
-                   77               0                4
-                   31               9                6
-    ================= =============== ================
+    ================= =============== ======================
+             **Item**       **Resto**   **Quadrado do Meio**
+    ================= =============== ======================
+                   54              10                      3
+                   26               4                      7
+                   93               5                      9
+                   17               6                      8
+                   77               0                      4
+                   31               9                      6
+    ================= =============== ======================
 
-
-We can also create hash functions for character-based items such as
-strings. The word “cat” can be thought of as a sequence of ordinal
-values.
+Nós podemos criar também funções de espalhamento para itens baseados em
+caracteres, como strings. A palavra "gato" pode ser entendida como uma sequência
+de valores ordinais.
 
 ::
 
-    >>> ord('c')
-    99
+    >>> ord('g')
+    103
     >>> ord('a')
     97
     >>> ord('t')
     116
+    >>> ord('o')
+    111
 
-We can then take these three ordinal values, add them up, and use the
-remainder method to get a hash value (see :ref:`Figure 6 <fig_stringhash>`).
-:ref:`Listing 1 <lst_hashfunction1>` shows a function called ``hash`` that takes a
-string and a table size and returns the hash value in the range from 0
-to ``tablesize``-1.
+Podemos pegar esses quatro valores, somá-los e usar o método do resto da divisão
+para extrair um valor de espalhamento (veja a :ref:`Figura 6 <fig_stringhash>`).
+O :ref:`Código 1 <lst_hashfunction1>` mostra uma função chamada ``hash`` que
+recebe uma string e o tamanho de uma tabela e retorna o valor de espalhamento
+dentro do intervalo de 0 a ``tablesize``-1.
 
 
 .. _fig_stringhash:
@@ -190,12 +195,12 @@ to ``tablesize``-1.
 .. figure:: Figures/stringhash.png
    :align: center
 
-   Figure 6: Hashing a String Using Ordinal Values
+   Figura 6: Hashing de uma String Usando Valores Ordinais
 
 
 .. _lst_hashfunction1:
 
-**Listing 1**
+**Código 1**
 
 ::
 

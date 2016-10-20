@@ -45,3 +45,6 @@ Padronização das traduções
 - **slot**: índice (PF)
 - **load factor**: fator de carga (PF)
 - **Named parameter**: parâmetro nomeado
+- **Social Security (...) **: INSS
+- **folding method**: ???
+- **mid-square method**: método do quadrado do meio ?
