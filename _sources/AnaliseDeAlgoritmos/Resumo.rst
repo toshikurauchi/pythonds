@@ -2,11 +2,11 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-Summary
--------
+Resumo
+------
 
--  Algorithm analysis is an implementation-independent way of measuring
-   an algorithm.
+-  A análise de algoritmos é uma maneira de medir um algoritmo independentemente
+   da implementação.
 
--  Big-O notation allows algorithms to be classified by their dominant
-   process with respect to the size of the problem.
+-  A notação O permite que algoritmos sejam classificados por seu processo
+   dominante em relação ao tamanho do problema.
