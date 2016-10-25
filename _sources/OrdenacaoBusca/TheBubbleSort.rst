@@ -111,27 +111,24 @@ A animação abaixo mostra o ``bubbleSort`` em ação.
 ..     bubbleSort(alist)
 ..     print(alist)
 
-
-To analyze the bubble sort, we should note that regardless of how the
-items are arranged in the initial list, :math:`n-1` passes will be
-made to sort a list of size *n*. :ref:`Table 1 <tbl_bubbleanalysis>` shows the number
-of comparisons for each pass. The total number of comparisons is the sum
-of the first :math:`n-1` integers. Recall that the sum of the first
-*n* integers is :math:`\frac{1}{2}n^{2} + \frac{1}{2}n`. The sum of
-the first :math:`n-1` integers is
-:math:`\frac{1}{2}n^{2} + \frac{1}{2}n - n`, which is
-:math:`\frac{1}{2}n^{2} - \frac{1}{2}n`. This is still
-:math:`O(n^{2})` comparisons. In the best case, if the list is already
-ordered, no exchanges will be made. However, in the worst case, every
-comparison will cause an exchange. On average, we exchange half of the
-time.
+Para analisar o bubble sort, devemos perceber que independente de como os
+itens estão dispostos na lista inicial, :math:`n-1` passagens serão feitas
+para ordenar uma lista de tamanho *n*. A :ref:`Tabela 1 <tbl_bubbleanalysis>`
+mostra o número de comparações para cada passagem. O número total de comparações
+é a soma dos primeiros :math:`n-1` inteiros. Lembre-se de que a soma dos
+primeiros *n* inteiros é :math:`\frac{1}{2}n^{2} + \frac{1}{2}n`. A soma dos
+primeiros :math:`n-1` inteiros é :math:`\frac{1}{2}n^{2} + \frac{1}{2}n - n`,
+que é :math:`\frac{1}{2}n^{2} - \frac{1}{2}n`. Ou seja, continuamos com
+:math:`O(n^{2})` comparações. No melhor caso, se a lista já estiver ordenada,
+nenhuma mudança será feita. Contudo, no pior caso, cada comparação resultará
+numa troca. Na média, trocamos metade das vezes.
 
 .. _tbl_bubbleanalysis:
 
-.. table:: **Table 1: Comparisons for Each Pass of Bubble Sort**
+.. table:: **Tabela 1: Comparações para Cada Passagem do Bubble Sort**
 
     ================= ==================
-    **Pass**          **Comparisons**
+    **Passagem**      **Comparações**
     ================= ==================
              1         :math:`n-1`
              2         :math:`n-2`
@@ -141,22 +138,21 @@ time.
     ================= ==================
 
 
-A bubble sort is often considered the most inefficient sorting method
-since it must exchange items before the final location is known. These
-“wasted” exchange operations are very costly. However, because the
-bubble sort makes passes through the entire unsorted portion of the
-list, it has the capability to do something most sorting algorithms
-cannot. In particular, if during a pass there are no exchanges, then we
-know that the list must be sorted. A bubble sort can be modified to stop
-early if it finds that the list has become sorted. This means that for
-lists that require just a few passes, a bubble sort may have an
-advantage in that it will recognize the sorted list and stop.
-:ref:`ActiveCode 2 <lst_shortbubble>` shows this modification, which is often referred
-to as the **short bubble**.
+O bubble sort com frequência é considerado o método de ordenação mais
+ineficiente, já que ele precisa realizar a troca de itens sem saber qual será
+sua posição final. Essas trocas "desnecessárias" são muito custosas. Contudo,
+justamente por realizar passagens pela porção desordenada da lista, o
+bubble sort consegue fazer o que a maioria dos outros algoritmos de ordenação
+não consegue. Em particular, se durante uma passagem não houver trocas, então
+sabemos que a lista está ordenada. O bubble sort pode ser modificado para
+terminar antes se descobrir que a lista ficou ordenada. Isso significa que
+para listas que requerem apenas algumas passagens, o bubble sort pode ter a
+vantagem de reconhecer a lista ordenada e parar. O :ref:`ActiveCode 2 <lst_shortbubble>`
+mostra essa modificação, a qual é comumente chamada de **short bubble**.
 
 
 .. activecode:: lst_shortbubble
-    :caption: The Short Bubble Sort
+    :caption: O Short Bubble Sort
 
     def shortBubbleSort(alist):
         exchanges = True
@@ -175,10 +171,10 @@ to as the **short bubble**.
     shortBubbleSort(alist)
     print(alist)
 
-.. Finally, here is ``shortBubbleSort`` in CodeLens (CodeLens 2)..
+.. Finalmente, aqui está o ``shortBubbleSort`` no CodeLens (CodeLens 2)..
 ..
 .. .. codelens:: shortbubbletrace
-..     :caption: Tracing the Short Bubble Sort
+..     :caption: Registrando o Short Bubble Sort
 ..
 ..     def shortBubbleSort(alist):
 ..         exchanges = True
@@ -197,7 +193,7 @@ to as the **short bubble**.
 ..     shortBubbleSort(alist)
 ..     print(alist)
 
-.. admonition:: Self Check
+.. admonition:: Autoavaliação
 
    .. mchoice:: question_sort_1
        :correct: b
@@ -205,10 +201,10 @@ to as the **short bubble**.
        :answer_b: [1, 3, 7, 9, 10, 8, 12, 13, 15, 19]
        :answer_c: [1, 7, 3, 9, 10, 13, 8, 12, 15, 19]
        :answer_d: [1, 9, 19, 7, 3, 10, 13, 15, 8, 12]
-       :feedback_a:  This answer represents three swaps.  A pass means that you continue swapping all the way to the end of the list.
-       :feedback_b:  Very Good
-       :feedback_c: A bubble sort contines to swap numbers up to index position passnum.  But remember that passnum starts at the length of the list - 1.
-       :feedback_d: You have been doing an insertion sort, not a bubble sort.
+       :feedback_a:  Esta resposta representa três trocas. Uma passagem significa que você continua realizando trocas durante todo o tempo até o fim da lista.
+       :feedback_b:  Muito bem.
+       :feedback_c: O bubble sort continua a trocar os número até a posição do índice passnum. Mas lembre-se de que passnum começa com o tamanho da lista - 1.
+       :feedback_d: Você fez a ordenação por inserção, não o bubble sort.
 
-       Suppose you have the following list of numbers to sort: <br>
-       [19, 1, 9, 7, 3, 10, 13, 15, 8, 12] which list represents the partially sorted list after three complete passes of bubble sort?
+       Suponha que você tenha a seguinte lista de números para ordenar: <br>
+       [19, 1, 9, 7, 3, 10, 13, 15, 8, 12] qual lista representa a lista parcialmente ordenada depois de três passagens completas do bubble sort?
