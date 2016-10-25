@@ -12,7 +12,7 @@ Análise
     PerformanceDeEstruturasDeDadosDoPython.rst
     Listas.rst
     Dicionarios.rst
-    Summary.rst
-    KeyTerms.rst
-    DiscussionQuestions.rst
-    ProgrammingExercises.rst
+    Resumo.rst
+    TermosChave.rst
+    QuestoesDeDiscussao.rst
+    ExerciciosDeProgramacao.rst

@@ -2,12 +2,12 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-Key Terms
----------
+Termos Chave
+------------
 
 ========================= ================ ====================
-             average case   Big-O notation          brute force
-             checking off      exponential               linear
-               log linear      logarithmic   order of magnitude
-                quadratic  time complexity           worst case
+               caso médio        notação O          força bruta
+                 marcação      exponencial               linear
+               log linear      logarítmico    ordem de grandeza
+               quadrático     complexidade            pior caso
 ========================= ================ ====================
