@@ -2,15 +2,16 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-The Insertion Sort
-~~~~~~~~~~~~~~~~~~
+A Ordenação Por Inserção
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-The **insertion sort**, although still :math:`O(n^{2})`, works in a
-slightly different way. It always maintains a sorted sublist in the
-lower positions of the list. Each new item is then “inserted” back into
-the previous sublist such that the sorted sublist is one item larger.
-:ref:`Figure 4 <fig_insertionsort>` shows the insertion sorting process. The shaded
-items represent the ordered sublists as the algorithm makes each pass.
+A **ordenação por inserção**, embora seja :math:`O(n^{2})`, funciona de uma forma
+ligeiramente diferente. Ela sempre mantém uma sublista ordenada nas posições
+inferiores da lista. Cada novo item é "inserido" na sublista anterior de modo
+que a sublista ordenada fique com um item a mais. A :ref:`Figura 4 <fig_insertionsort>`
+mostra o processo de ordenação por inserção. Os itens sombreados representam
+as sublistas ordenadas conforme cada passagem feita pelo algoritmo.
+
 
 .. _fig_insertionsort:
 
@@ -19,51 +20,50 @@ items represent the ordered sublists as the algorithm makes each pass.
 
    Figure 4: ``insertionSort``
 
+Começamos pressupondo que uma lista com um único item (posição :math:`0`) está
+ordenada. A cada passagem, do item 1 a :math:`n-1`, o item atual é comparado
+com os que já estão na sublista ordenada. Conforme vamos caminhando de trás
+pra frente na sublista já ordenada, movemos os itens que são maiores para a
+direita. Quando encontramos um item menor ou chegamos ao fim da sublista, o
+item atual é inserido.
 
-We begin by assuming that a list with one item (position :math:`0`) is
-already sorted. On each pass, one for each item 1 through :math:`n-1`,
-the current item is checked against those in the already sorted sublist.
-As we look back into the already sorted sublist, we shift those items
-that are greater to the right. When we reach a smaller item or the end
-of the sublist, the current item can be inserted.
+A :ref:`Figura 5 <fig_insertionpass>` mostra a quinta passagem em detalhe.
+Nesse ponto do algoritmo, há uma sublista com cinco itens: 17, 26, 54, 77 e 93.
+Queremos inserir 31 nesse conjunto já ordenado. A primeira comparação faz com
+que o item 93 vá para a direita. Os itens 77 e 54 também são deslocados para
+frente. Quando o item 26 é encontrado, o processo de deslocamento para e o 31
+é colocado na lacuna aberta. Temos agora uma sublista ordenada com seis itens.
 
-:ref:`Figure 5 <fig_insertionpass>` shows the fifth pass in detail. At this point in
-the algorithm, a sorted sublist of five items consisting of 17, 26, 54,
-77, and 93 exists. We want to insert 31 back into the already sorted
-items. The first comparison against 93 causes 93 to be shifted to the
-right. 77 and 54 are also shifted. When the item 26 is encountered, the
-shifting process stops and 31 is placed in the open position. Now we
-have a sorted sublist of six items.
 
 .. _fig_insertionpass:
 
 .. figure:: Figures/insertionpass.png
    :align: center
 
-   Figure 5: ``insertionSort``: Fifth Pass of the Sort
+   Figura 5: ``Ordenação por Inserção``: Quinta Passagem do Algoritmo
 
 
-The implementation of ``insertionSort`` (:ref:`ActiveCode 1 <lst_insertion>`) shows that
-there are again :math:`n-1` passes to sort *n* items. The iteration
-starts at position 1 and moves through position :math:`n-1`, as these
-are the items that need to be inserted back into the sorted sublists.
-Line 8 performs the shift operation that moves a value up one position
-in the list, making room behind it for the insertion. Remember that this
-is not a complete exchange as was performed in the previous algorithms.
+A implementação da ``ordenação por inserção`` (:ref:`ActiveCode 1 <lst_insertion>`)
+mostra mais uma vez que há :math:`n-1` passagens para ordenar *n* itens. A
+iteração começa na posição 1 e vai até a posição : math:`n-1`, uma vez que esses
+são os itens que precisam ser inseridos nas sublistas ordenadas. A linha 8
+realiza a operação de deslocamento que move um valor uma posição à direita na
+lista, abrindo espaço para a inserção. Note que essa não é uma troca completa
+da mesma maneira que foi mostrada em algoritmos anteriores.
 
-The maximum number of comparisons for an insertion sort is the sum of
-the first :math:`n-1` integers. Again, this is :math:`O(n^{2})`.
-However, in the best case, only one comparison needs to be done on each
-pass. This would be the case for an already sorted list.
+O número máximo de comparações para uma ordenação por inserção é a soma dos
+primeiros :math:`n-1` inteiros. De novo, isso é :math:`O(n^{2})`. Contudo,
+no melhor caso, apenas uma comparação é necessária a cada passagem. Esse
+seria o caso de uma lista já ordenada.
 
-One note about shifting versus exchanging is also important. In general,
-a shift operation requires approximately a third of the processing work
-of an exchange since only one assignment is performed. In benchmark
-studies, insertion sort will show very good performance.
+Uma observação importante sobre a diferença entre deslocamento e troca: em
+geral, a operação de deslocamento requer aproximadamente um terço de
+processamento de uma troca, já que apenas uma atribuição é feita. Em estudos
+de desempenho, a ordenação por inserção costuma mostrar ótimos resultados.
 
 
 .. activecode:: lst_insertion
-    :caption: Insertion Sort
+    :caption: Ordenação por Inserção
 
     def insertionSort(alist):
        for index in range(1,len(alist)):
@@ -88,7 +88,7 @@ studies, insertion sort will show very good performance.
    :viewer: BarViewer
 
 
-.. For more detail, CodeLens 4 allows you to step through the algorithm.
+.. Para mais detalhes, o CodeLens 4 permite que você realize um passo por vez do algoritmo.
 ..
 .. .. codelens:: insertionsortcodetrace
 ..     :caption: Tracing the Insertion Sort
@@ -109,7 +109,7 @@ studies, insertion sort will show very good performance.
 ..     insertionSort(alist)
 ..     print(alist)
 
-.. admonition:: Self Check
+.. admonition:: Autoavaliação
 
    .. mchoice:: question_sort_3
       :correct: c
@@ -117,11 +117,10 @@ studies, insertion sort will show very good performance.
       :answer_b: [15, 5, 4, 10, 12, 8, 14, 18, 19, 20]
       :answer_c: [4, 5, 15, 18, 12, 19, 14, 10, 8, 20]
       :answer_d: [15, 5, 4, 18, 12, 19, 14, 8, 10, 20]
-      :feedback_a: This is a bubble sort.
-      :feedback_b:  This is the result of selection sort.
-      :feedback_c: Insertion sort works at the start of the list.  Each pass produces a longer sorted list.
-      :feedback_d: Insertion sort works on the front of the list not the end.
+      :feedback_a: Este é o bubble sort.
+      :feedback_b: Este é o resultado da ordenação por seleção.
+      :feedback_c: A ordenação por inserção começa pelo início da lista. Cada passagem produz uma lista ordenada maior.
+      :feedback_d: A ordenação por inserção não trabalha a partir do final da lista.
 
-       Suppose you have the following list of numbers to sort: <br>
-       [15, 5, 4, 18, 12, 19, 14, 10, 8, 20] which list represents the partially sorted list after three complete passes of insertion sort?
-
+       Suponha que você tenha a seguinte lista de números para ordenar: <br>
+       [15, 5, 4, 18, 12, 19, 14, 10, 8, 20] qual lista representa a lista parcialmente ordenada depois três passagens completas da ordenação por inserção?
