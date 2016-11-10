@@ -11,13 +11,13 @@ Ordenação e Busca
     BuscaBinaria.rst
     Hashing.rst
     ordenacao.rst
-    TheBubbleSort.rst
-    TheSelectionSort.rst
-    TheInsertionSort.rst
+    OBubbleSort.rst
+    AOrdenacaoPorSelecao.rst
+    AOrdenacaoPorInsercao.rst
     TheShellSort.rst
     TheMergeSort.rst
     TheQuickSort.rst
-    Summary.rst
+    Sumario.rst
     KeyTerms.rst
     DiscussionQuestions.rst
     ProgrammingExercises.rst

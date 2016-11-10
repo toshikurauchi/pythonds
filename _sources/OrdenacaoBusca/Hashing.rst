@@ -212,11 +212,12 @@ dentro do intervalo de 0 a ``tablesize``-1.
         return sum%tablesize
 
 
-It is interesting to note that when using this hash function, anagrams
-will always be given the same hash value. To remedy this, we could use
-the position of the character as a weight. :ref:`Figure 7 <fig_stringhash2>` shows
-one possible way to use the positional value as a weighting factor. The
-modification to the ``hash`` function is left as an exercise.
+É interessante notar que quando usamos essa função de espalhamento, anagramas
+sempre terão o mesmo valor de dispersão. Para contornar isso, poderíamos usar
+a posição do caractere como um peso. A :ref:`Figura 7 <fig_stringhash2>` mostrar
+uma maneira possível de usar o valor posicional como um fator de peso. A
+modificação na função de espalhamento é deixada como exercício.
+
 
 .. _fig_stringhash2:
 
