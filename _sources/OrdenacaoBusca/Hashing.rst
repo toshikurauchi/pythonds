@@ -224,101 +224,107 @@ modificação na função de espalhamento é deixada como exercício.
 .. figure:: Figures/stringhash2.png
    :align: center
 
-   Figure 7: Hashing a String Using Ordinal Values with Weighting
+   Figura 7: Hashing de uma String Usando Valores Ordinais com Peso
+
+Você pode pensar em diversas outras formas de computar valores de
+espalhamento para os itens de uma coleção. O importante é lembrar que a
+função de espalhamento precisa ser eficiente, de modo que ela não se torne
+a parte dominante no processo de armazenamento e busca. Se a função de
+espalhamento for muito complexa, então computar posições na tabela se torna
+mais trabalhoso do que simplesmente realizar uma busca sequencial ou
+binária, já abordadas anteriormente. Isso iria aniquilar o propósito
+do hashing.
 
 
-You may be able to think of a number of additional ways to compute hash
-values for items in a collection. The important thing to remember is
-that the hash function has to be efficient so that it does not become
-the dominant part of the storage and search process. If the hash
-function is too complex, then it becomes more work to compute the slot
-name than it would be to simply do a basic sequential or binary search
-as described earlier. This would quickly defeat the purpose of hashing.
+Resolução de Colisões
+^^^^^^^^^^^^^^^^^^^^^
 
-Collision Resolution
-^^^^^^^^^^^^^^^^^^^^
+Retornamos agora ao problema das colisões. Quando dois itens são levados
+à mesma posição pela função de espalhamento, precisamos ter uma forma
+sistemática de colocar o segundo item na tabela de dispersão. Esse processo
+é chamado de **resolução de colisões**. Como dito anteriormente, se a função
+de espalhamento for perfeita, colisões nunca ocorrerão. Contudo, como isso
+não é muito realista, a resolução de colisões acaba sendo uma parte
+muito importante do hashing.
 
-We now return to the problem of collisions. When two items hash to the
-same slot, we must have a systematic method for placing the second item
-in the hash table. This process is called **collision resolution**. As
-we stated earlier, if the hash function is perfect, collisions will
-never occur. However, since this is often not possible, collision
-resolution becomes a very important part of hashing.
+Um método para resolução de colisões olha para a tabela de dispersão e tenta
+encontrar outra posição aberta que possa armazenar o item que causou a colisão.
+Uma forma simples de fazer isso é começar pela posição do valor de espalhamento
+original e mover de forma sequencial pelas entradas até encontrar a primeira
+que esteja vazia. Note que poderemos ter que voltar para a primeira entrada
+(circularmente) para cobrir a tabela de dispersão inteira. Esse processo de
+resolução de colisões é conhecido como **endereçamento aberto**, já que ele
+procura encontrar a próxima entrada aberta na tabela de dispersão. Ao visitar
+sistematicamente uma posição por vez, estamos realizando uma técnica de
+endereçamento aberto chamada **sondagem linear**.
 
-One method for resolving collisions looks into the hash table and tries
-to find another open slot to hold the item that caused the collision. A
-simple way to do this is to start at the original hash value position
-and then move in a sequential manner through the slots until we
-encounter the first slot that is empty. Note that we may need to go back
-to the first slot (circularly) to cover the entire hash table. This
-collision resolution process is referred to as **open addressing** in
-that it tries to find the next open slot or address in the hash table.
-By systematically visiting each slot one at a time, we are performing an
-open addressing technique called **linear probing**.
+A :ref:`Figura 8 <fig_linearprobing>` mostra o conjunto ampliado de inteiros
+(54,26,93,17,77,31,44,55,20) submetidos à função de espalhamento simples
+baseada no resto da divisão. A :ref:`Tabela 4 <tbl_hashvalues1>` acima mostra
+os valores de espalhamento para os itens originais. A
+:ref:`Figura 5 <fig_hashtable2>` mostra seu elementos originais. Quando
+tentamos colocar o 44 na entrada 0, ocorre uma colisão. Usando a sondagem
+linear, procuramos sequencialmente, entrada por entrada, até encontrarmos uma
+posição aberta. Nesse caso, achamos o slot 1.
 
-:ref:`Figure 8 <fig_linearprobing>` shows an extended set of integer items under the
-simple remainder method hash function (54,26,93,17,77,31,44,55,20).
-:ref:`Table 4 <tbl_hashvalues1>` above shows the hash values for the original items.
-:ref:`Figure 5 <fig_hashtable2>` shows the original contents. When we attempt to
-place 44 into slot 0, a collision occurs. Under linear probing, we look
-sequentially, slot by slot, until we find an open position. In this
-case, we find slot 1.
-
-Again, 55 should go in slot 0 but must be placed in slot 2 since it is
-the next open position. The final value of 20 hashes to slot 9. Since
-slot 9 is full, we begin to do linear probing. We visit slots 10, 0, 1,
-and 2, and finally find an empty slot at position 3.
+Novamente, o 55 deveria cair no slot 0, mas acaba sendo colocado no 2, já que
+é a próxima entrada disponível. O valor final de 20 leva à posição 9. Como
+ela já está ocupada, começamos a fazer a sondagem linear. Visitamos então
+as entradas 10, 0, 1 e 2, até finalmente encontrarmos uma entrada vazia na
+posição 3 da tabela.
 
 .. _fig_linearprobing:
 
 .. figure:: Figures/linearprobing1.png
    :align: center
 
-   Figure 8: Collision Resolution with Linear Probing
+   Figura 8: Resolução de Colisões com Sondagem Linear
 
 
-Once we have built a hash table using open addressing and linear
-probing, it is essential that we utilize the same methods to search for
-items. Assume we want to look up the item 93. When we compute the hash
-value, we get 5. Looking in slot 5 reveals 93, and we can return
-``True``. What if we are looking for 20? Now the hash value is 9, and
-slot 9 is currently holding 31. We cannot simply return ``False`` since
-we know that there could have been collisions. We are now forced to do a
-sequential search, starting at position 10, looking until either we find
-the item 20 or we find an empty slot.
+Uma vez construída uma tabela de dispersão usando endereçamento aberto e
+sondagem linear, é essencial que utilizemos os mesmos métodos para procurar
+os itens. Suponha que estamos em busca do item 93. Quando computamos seu
+valor de espalhamento, temos 5 como resultado. Ao procurar na posição 5,
+encontramos o 93, então podemos retornar ``True``. Mas o que acontece se
+procurarmos pelo 20? Nesse caso, o valor de espalhamento é 9 e o slot 9
+está sendo ocupado pelo 31. Nós não podemos simplesmente retornar ``False``
+porque sabemos que pode ter ocorrido colisões. Somos obrigados então a fazer
+uma busca sequencial, começando pela posição 10 e procurando até encontrarmos
+o item 20 ou uma entrada vazia.
 
-A disadvantage to linear probing is the tendency for **clustering**;
-items become clustered in the table. This means that if many collisions
-occur at the same hash value, a number of surrounding slots will be
-filled by the linear probing resolution. This will have an impact on
-other items that are being inserted, as we saw when we tried to add the
-item 20 above. A cluster of values hashing to 0 had to be skipped to
-finally find an open position. This cluster is shown in
-:ref:`Figure 9 <fig_clustering>`.
+Uma desvantagem da sondagem linear é a tendência para **aglutinação**, isto é,
+os itens tendem a ficar agrupados na tabela. Isso significa que se ocorrerem
+muitas colisões em um mesmo valor de espalhamento, as entradas vizinhas
+ficarão ocupadas por causa da sondagem linear. Isso terá um impacto sobre os
+outros itens que forem inseridos, como vimos quando tentamos adicionar o item
+20 acima. Uma aglutinação de valores sendo levados a 0 teve que ser
+vencida para que finalmente encontrássemos uma posição vazia. Essa aglutinação
+é mostrada na :ref:`Figura 9 <fig_clustering>`.
+
 
 .. _fig_clustering:
 
 .. figure:: Figures/clustering.png
    :align: center
 
-   Figure 9: A Cluster of Items for Slot 0
+   Figura 9: Uma Aglutinação de Items para a Entrada 0
 
+Uma forma de lidar com a aglutinação é estender a técnica de sondagem linear
+para que em vez de procurar sequencialmente para a próxima entrada aberta,
+alguns slots sejam pulados, distribuindo assim os itens que causaram colisão
+de maneira mais uniforme. Isso potencialmente irá reduzir a aglutinação.
+A :ref:`Figura 10 <fig_linearprobing2>` mostra como os itens ficam dispostos
+quando uma resolução por colisão é feita com uma sondagem "mais 3". Isso
+significa que uma vez ocorrida a colisão, iremos procurar de três em três
+entradas até encontrar uma vazia.
 
-One way to deal with clustering is to extend the linear probing
-technique so that instead of looking sequentially for the next open
-slot, we skip slots, thereby more evenly distributing the items that
-have caused collisions. This will potentially reduce the clustering that
-occurs. :ref:`Figure 10 <fig_linearprobing2>` shows the items when collision
-resolution is done with a “plus 3” probe. This means that once a
-collision occurs, we will look at every third slot until we find one
-that is empty.
 
 .. _fig_linearprobing2:
 
 .. figure:: Figures/linearprobing2.png
    :align: center
 
-   Figure 10: Collision Resolution Using “Plus 3”
+   Figura 10: Resolução de Colisão Usando o "Mais 3"
 
 
 The general name for this process of looking for another slot after a

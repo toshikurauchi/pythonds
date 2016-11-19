@@ -2,28 +2,27 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-The Quick Sort
-~~~~~~~~~~~~~~
+O Quick Sort
+~~~~~~~~~~~~
 
-The **quick sort** uses divide and conquer to gain the same advantages
-as the merge sort, while not using additional storage. As a trade-off,
-however, it is possible that the list may not be divided in half. When
-this happens, we will see that performance is diminished.
+O **quick sort** utiliza a estratégia de dividir para conquistar para obter
+as mesmas vantagens do merge sort, mas sem usar espaço adicional. Em
+compensação, é possível que a lista possa não ser dividida ao meio. Quando isso
+ocorre, veremos que seu desempenho é reduzido.
 
-A quick sort first selects a value, which is called the **pivot value**.
-Although there are many different ways to choose the pivot value, we
-will simply use the first item in the list. The role of the pivot value
-is to assist with splitting the list. The actual position where the
-pivot value belongs in the final sorted list, commonly called the
-**split point**, will be used to divide the list for subsequent calls to
-the quick sort.
+O quick sort primeiro seleciona um valor, chamado de **pivô**. Embora existam
+muitas maneiras de selecionar o pivô, iremos utilizar simplesmente o primeiro
+item na lista. O papel do pivô é ajudar na divisão da lista. A posição à qual
+o pivô pertence de fato na lista ordenada, conhecida como **ponto de divisão**,
+será usada para quebrar a lista em chamadas subsequentes do quick sort.
 
-:ref:`Figure 12 <fig_splitvalue>` shows that 54 will serve as our first pivot value.
-Since we have looked at this example a few times already, we know that
-54 will eventually end up in the position currently holding 31. The
-**partition** process will happen next. It will find the split point and
-at the same time move other items to the appropriate side of the list,
-either less than or greater than the pivot value.
+A :ref:`Figura 12 <fig_splitvalue>` mostra que o 54 funcionará como nosso
+primeiro pivô. Como já olhamos para esse exemplo algumas vezes, sabemos que o
+54 acabará uma hora na posição em que está o 31. O processo de **partição**
+ocorrerá em seguida. Ele iráencontrar o ponto de divisão e, ao mesmo tempo,
+moverá os itens para o lado apropriado da lista, isto é, maior ou menor que
+o valor do pivô.
+
 
 .. _fig_splitvalue:
 
@@ -31,11 +30,12 @@ either less than or greater than the pivot value.
 .. figure:: Figures/firstsplit.png
    :align: center
 
-   Figure 12: The First Pivot Value for a Quick Sort
+   Figura 12: O Primeiro Pivô do Quick Sort
 
 
 
 
+O particionamento começa
 
 Partitioning begins by locating two position markers—let’s call them
 ``leftmark`` and ``rightmark``—at the beginning and end of the remaining

@@ -18,6 +18,6 @@ Ordenação e Busca
     TheMergeSort.rst
     TheQuickSort.rst
     Sumario.rst
-    KeyTerms.rst
+    TermosChave.rst
     DiscussionQuestions.rst
     ProgrammingExercises.rst
