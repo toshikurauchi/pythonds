@@ -37,9 +37,9 @@ segunda lista e, caso encontrado, será marcado por substituição.
         umalista = list(s2)
 
         pos1 = 0
-        aindalOK = True
+        aindaOK = True
 
-        while pos1 < len(s1) and aindalOK:
+        while pos1 < len(s1) and aindaOK:
             pos2 = 0
             encontrado = False
             while pos2 < len(umalista) and not encontrado:
@@ -51,11 +51,11 @@ segunda lista e, caso encontrado, será marcado por substituição.
             if encontrado:
                 umalista[pos2] = None
             else:
-                aindalOK = False
+                aindaOK = False
 
             pos1 = pos1 + 1
 
-        return aindalOK
+        return aindaOK
 
     print(solucaoAnagrama1('abcd','dcba'))
 
@@ -137,9 +137,9 @@ disso de antemão e então ele ainda gerará :math:`n!` strings diferentes.
 
 Acontece que :math:`n!` cresce mais rápido ainda do que :math:`2^{n}`
 conforme *n* cresce. De fato, se ``s1`` contivesse 20 caracteres, haveria
-:math:`20!=2,432,902,008,176,640,000` possíveis strings candidatas. Se
+:math:`20!=2.432.902.008.176.640.000` possíveis strings candidatas. Se
 processássemos uma possibilidade a cada segundo, ainda seriam necessários
-77,146,816,596 anos para percorrer toda a lista. Esta provavelmente não
+77.146.816.596 anos para percorrer toda a lista. Esta provavelmente não
 será uma boa solução.
 
 Solução 4: Contar e Comparar

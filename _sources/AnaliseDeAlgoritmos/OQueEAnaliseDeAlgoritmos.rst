@@ -144,7 +144,7 @@ obtemos o seguinte:
     A soma é 50005000 demorou  0.0019360 segundos
 
 Descobrimos que o tempo é razoavelmente consistente e que o código demora
-em média 0.0019 segundos para ser executado. E se executarmos a função
+em média 0,0019 segundos para ser executado. E se executarmos a função
 somando os primeiros 100.000 inteiros?
 
 ::

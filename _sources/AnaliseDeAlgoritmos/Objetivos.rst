@@ -7,10 +7,10 @@ Objetivos
 
 -  Entender por que a análise de algoritmos é importante.
 
--  To be able to use “Big-O” to describe execution time.
+-  Ser capaz de utilizar a "Notação O" para descrever o tempo de execução.
 
--  To understand the “Big-O” execution time of common operations on
-   Python lists and dictionaries.
+-  Entender o tempo de execução em "Notação O" de operações comuns sobre
+   listas e dicionários do Python.
 
 -  Entender como a implementação dos dados em Python impacta a análise 
    de algoritmos.

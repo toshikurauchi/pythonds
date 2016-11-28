@@ -17,7 +17,7 @@ fazer operações menos comuns de maneira eficiente, mas quando a escolha deveri
 ser feita a performance de uma operação menos comum foi geralmente sacrificada em favor
 de uma operação mais comum.
 
-Duas operações comuns são o acesso e a atribuição a uma posição indexada.
+Duas operações comuns são o acesso e a atribuição de um elemento através de seu índice.
 Ambas as operações consomem a mesma quantidade de tempo, independentemente do quão
 grande a lista se torne. Quando uma operação como essa é independente do
 tamanho da lista ela é :math:`O(1)`.
@@ -107,8 +107,8 @@ os testes de tempo em um ambiente que é livre de variáveis dispersas que você
 pode ter criado, que podem interferir na performance da sua função de algum
 modo imprevisto.
 
-Do experimento acima fica claro que a operação de append, com 0.30 milissegundos,
-é muito mais rápida do que a concatenação, com 6.54 milissegundos. No 
+Do experimento acima fica claro que a operação de append, com 0,30 milissegundos,
+é muito mais rápida do que a concatenação, com 6,54 milissegundos. No 
 experimento acima nós também mostramos o consumo de tempo de dois métodos 
 adicionais para a criação de listas; usando o construtor da lista com uma
 chamada à função ``range`` e usando list comprehension. É interessante notar
@@ -119,8 +119,8 @@ Uma observação final sobre esse pequeno experimento é que as chamadas
 de função acima criam uma sobrecarga, mas podemos assumir que a sobrecarga
 da chamada de função é idêntica em todos os quatro casos, assim ainda temos
 uma comparação significativa entre as operações. Então não seria acurado dizer que
-a operação de concatenação leva 6.54 milissegundos, mas que a função de teste
-da concatenação leva 6.54 milissegundos. Como um exercício você pode testar
+a operação de concatenação leva 6,54 milissegundos, mas que a função de teste
+da concatenação leva 6,54 milissegundos. Como um exercício você pode testar
 a quantidade de tempo necessária para chamar uma função vazia e subtrair esse
 valor dos números acima.
 
@@ -180,8 +180,8 @@ começo da lista continuará a aumentar conforme a lista cresce.
 
 :ref:`Listing 4 <lst_popmeas>` mostra uma tentativa de medir a diferença
 entre os dois usos do ``pop``. Como você pode ver no primeiro exemplo, 
-realizar um ``pop`` a partir do fim leva 0.0003 milissegundos, enquanto realizar o ``pop`` a partir
-do começo leva 4.82 milissegundos. Para uma lista de dois milhões de elementos
+realizar um ``pop`` a partir do fim leva 0,0003 milissegundos, enquanto realizar o ``pop`` a partir
+do começo leva 4,82 milissegundos. Para uma lista de dois milhões de elementos
 esse é um fator de 16.000.
 
 Há algumas coisas a notar sobre :ref:`Listing 4 <lst_popmeas>`. A

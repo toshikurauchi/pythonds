@@ -7,7 +7,7 @@ Exercícios de Programação
 
 
 
-#. Faça um experimento para verificar que o acesso a um elemento indexado em uma lista é 
+#. Faça um experimento para verificar que o acesso a um elemento através de seu índice em uma lista é 
    :math:`O(1)`.
 
 #. Faça um experimento para verificar que o acesso e atribuição a um item 
@@ -16,7 +16,7 @@ Exercícios de Programação
 #. Faça um experimento para comparar a performance do operador ``del``
    em listas e dicionários.
 
-#. Dada uma lista de números em ordem aleatória, escreva um algoritmos que funcione em :math:`O(n\log(n))`
+#. Dada uma lista de números em ordem aleatória, escreva um algoritmo que funcione em :math:`O(n\log(n))`
    para achar o k-ésimo menor número da lista.
 
 #. Você pode melhorar o algoritmo do problema anterior para que ele seja linear? Explique.

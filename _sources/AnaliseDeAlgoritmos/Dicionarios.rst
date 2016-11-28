@@ -5,9 +5,7 @@
 Dicionários
 ~~~~~~~~~~~
 
-
-
-Dicionários são outra das principais estruturas de dados do Python. Como você
+O dicionário é outra das estruturas de dados principais do Python. Como você
 provavelmente se lembra, a diferença entre dicionários e listas é que você
 pode acessar itens em um dicionário através de uma chave ao invés de uma posição. 
 Em capítulos futuros neste livro você verá que há diversas maneiras de implementar
@@ -38,7 +36,7 @@ como um dicionário poderia ser implementado.
 
 
 
-Para o nosso último experimento de performance vamos comparar a performance do
+Para o nosso último experimento vamos comparar a performance do
 operador contém entre listas e dicionários. Durante o processo vamos confirmar
 que o operador contém para listas é :math:`O(n)` e o operador contém para 
 dicionários é :math:`O(1)`. O experimento que realizaremos para comparar as
@@ -83,7 +81,7 @@ realizando exatamente a mesma operação, ``número in x``. A diferença
 
 A :ref:`Figura 4 <fig_listvdict>` resume os resultados da execução de
 :ref:`Listing 6 <lst_listvdict>`. Você pode ver que o dicionário é consistentemente
-mais rápido. Para a menor lista, de tamanho 10.000 elementos, o dicionário é
+mais rápido. Para a menor lista, com 10.000 elementos, o dicionário é
 89,4 vezes mais rápido do que a lista. Para o maior tamanho, de 990.000 elementos,
 o dicionário é 11.603 vezes mais rápido! Você também pode ver que o
 tempo necessário para o operador contém na lista cresce linearmente 
@@ -102,7 +100,7 @@ levou 0.004 milissegundos.
 
 Como Python é uma linguagem em evolução, sempre há mudanças ocorrendo por
 trás dos panos. A informação atualizada sobre a performance de estruturas de
-dados do Python podem ser encontradas na página do Python. No momento da
+dados do Python pode ser encontrada na página do Python. No momento da
 escrita deste texto a wiki do Python possui uma página bastante interessante
 sobre a complexidade de tempo, que pode ser encontrada em
 `Time Complexity Wiki <http://wiki.python.org/moin/TimeComplexity>`_.
