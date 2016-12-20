@@ -16,7 +16,7 @@ Ordenação e Busca
     AOrdenacaoPorInsercao.rst
     TheShellSort.rst
     TheMergeSort.rst
-    TheQuickSort.rst
+    OQuickSort.rst
     Sumario.rst
     TermosChave.rst
     DiscussionQuestions.rst
