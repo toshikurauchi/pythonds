@@ -15,7 +15,7 @@ Ordenação e Busca
     AOrdenacaoPorSelecao.rst
     AOrdenacaoPorInsercao.rst
     TheShellSort.rst
-    TheMergeSort.rst
+    OMergeSort.rst
     OQuickSort.rst
     Sumario.rst
     TermosChave.rst
