@@ -327,60 +327,64 @@ entradas até encontrar uma vazia.
    Figura 10: Resolução de Colisão Usando o "Mais 3"
 
 
-The general name for this process of looking for another slot after a
-collision is **rehashing**. With simple linear probing, the rehash
-function is :math:`newhashvalue = rehash(oldhashvalue)` where
-:math:`rehash(pos) = (pos + 1) \% sizeoftable`. The “plus 3” rehash
-can be defined as :math:`rehash(pos) = (pos+3) \% sizeoftable`. In
-general, :math:`rehash(pos) = (pos + skip) \% sizeoftable`. It is
-important to note that the size of the “skip” must be such that all the
-slots in the table will eventually be visited. Otherwise, part of the
-table will be unused. To ensure this, it is often suggested that the
-table size be a prime number. This is the reason we have been using 11
-in our examples.
+O nome geral para esse processo de procurar por outro slot depois de uma
+colisão é **rehashing**. Com uma simples sondagem linear, a função de
+rehash é :math:`newhashvalue = rehash(oldhashvalue)`, onde
+:math:`rehash(pos) = (pos + 1) \% tamanhodatabela`. O rehash "mais 3" pode ser
+definido como  :math:`rehash(pos) = (pos+3) \% tamanhodatabela`. De modo geral,
+temos :math:`rehash(pos) = (pos + pulo) \% tamanhodatabela`. É importante
+notar que o tamanho do "pulo" precisa assumir um valor tal que todas as
+entradas da tabela serão visitadas em algum momento. Caso contrário,
+parte da tabela será inutilizada. Para garantir isso, sugere-se que o tamanho
+da tabela seja um número primo. Essa é a razão de termos escolhido 11 em
+nossos exemplos.
 
-A variation of the linear probing idea is called **quadratic probing**.
-Instead of using a constant “skip” value, we use a rehash function that
-increments the hash value by 1, 3, 5, 7, 9, and so on. This means that
-if the first hash value is *h*, the successive values are :math:`h+1`,
-:math:`h+4`, :math:`h+9`, :math:`h+16`, and so on. In other words,
-quadratic probing uses a skip consisting of successive perfect squares.
-:ref:`Figure 11 <fig_quadratic>` shows our example values after they are placed using
-this technique.
+Uma variação da ideia de sondagem linear é a **sondagem quadrática**. Em vez
+de um valor constante de "pulo", usamos uma função de reshash que incrementa
+o valor espalhamento por 1, 3, 5, 7, 9 e assim por diante. Isso significa que
+se o primeiro valor de espalhamento for *h*, os valores seguintes são
+:math:`h+1`, :math:`h+4`, :math:`h+9`, :math:`h+16` e assim sucessivamente.
+Em outras palavras, a sondagem quadrática utiliza um pulo que consiste de
+quadrados perfeitos sucessivos. A :ref:`Figura 11 <fig_quadratic>` mostra
+nossos valores de exemplo depois de eles terem sido alocados usando essa técnica.
+
 
 .. _fig_quadratic:
 
 .. figure:: Figures/quadratic.png
    :align: center
 
-   Figure 11: Collision Resolution with Quadratic Probing
+   Figura 11: Resolução de Colisões com Sondagem Quadrática
 
 
-An alternative method for handling the collision problem is to allow
-each slot to hold a reference to a collection (or chain) of items.
-**Chaining** allows many items to exist at the same location in the hash
-table. When collisions happen, the item is still placed in the proper
-slot of the hash table. As more and more items hash to the same
-location, the difficulty of searching for the item in the collection
-increases. :ref:`Figure 12 <fig_chaining>` shows the items as they are added to a hash
-table that uses chaining to resolve collisions.
+Um método alternativo para lidar com o problema da colisão é permitir que cada
+entrada tenha uma referência para uma coleção (ou sequência) de itens.
+O **Encadeamento** permite que muitos itens existam no mesma entrada de uma
+tabela de dispersão. Quando colisões acontecem, o item ainda assim é colocado
+na entrada apropriada da tabela de dispersão. Mas conforme mais itens vão sendo
+alocados para a mesma posição, a dificuldade de encontrar um item na coleção
+aumenta. A :ref:`Figura 12 <fig_chaining>` mostra os itens conforme eles
+aumentb. vão sendo adicionados a uma tabela de dispersão que usa encadeamento
+aumentc. para resolver colisões.
+
 
 .. _fig_chaining:
 
 .. figure:: Figures/chaining.png
    :align: center
 
-   Figure 12: Collision Resolution with Chaining
+   Figura 12: Resolução de Colisões por Encadeamento
 
 
-When we want to search for an item, we use the hash function to generate
-the slot where it should reside. Since each slot holds a collection, we
-use a searching technique to decide whether the item is present. The
-advantage is that on the average there are likely to be many fewer items
-in each slot, so the search is perhaps more efficient. We will look at
-the analysis for hashing at the end of this section.
+Quando queremos procurar por um item, usamos a função de espalhamento para gerar
+o slot aonde ele deveria cair. Como cada entrada contém uma coleção, usamos uma
+técnica de busca para decidir se o item está presente ou não. A vantagem é que
+na média é provável que haja muito poucos itens por slot, então a busca tende
+a ser mais eficiente. No final desta seção, iremos tratar da análise
+do hashing.
 
-.. admonition:: Self Check
+
+.. admonition:: Autoavaliação
 
    .. mchoice:: HASH_1
       :correct: c
@@ -388,12 +392,12 @@ the analysis for hashing at the end of this section.
       :answer_b: 13, 0
       :answer_c: 1, 0
       :answer_d: 2, 3
-      :feedback_a:  Be careful to use modulo not integer division
-      :feedback_b:  Don't divide by two, use the modulo operator.
-      :feedback_c: 27 % 13 == 1 and 130 % 13 == 0
-      :feedback_d: Use the modulo operator
+      :feedback_a: Cuidado: use o módulo, não a divisão por inteiro.
+      :feedback_b: Não divida por dois, use o operador módulo.
+      :feedback_c: 27 % 13 == 1 e 130 % 13 == 0
+      :feedback_d: Use o operador módulo
 
-      In a hash table of size 13 which index positions would the following two keys map to?  27,  130
+      Na tabela de dispersão de tamanho 13, para quais índices as seguintes duas chaves seriam mapeadas? 27, 130
 
    .. mchoice:: HASH_2
       :correct: b
@@ -401,61 +405,61 @@ the analysis for hashing at the end of this section.
       :answer_b: 99, 100, __, 113, 114, __, 116, 117, 105, 97, 108
       :answer_c: 100, 113, 117, 97, 14, 108, 116, 105, 99, __, __
       :answer_d: 117, 114, 108, 116, 105, 99, __, __, 97, 100, 113
-      :feedback_a:  It looks like you may have been doing modulo 2 arithmentic.  You need to use the hash table size as the modulo value.
-      :feedback_b:  Using modulo 11 arithmetic and linear probing gives these values
-      :feedback_c: It looks like you are using modulo 10 arithmetic, use the table size.
-      :feedback_d: Be careful to use modulo not integer division.
+      :feedback_a: Parece que você fez aritmética de módulo 2. Você precisa usar o tamanho da tabela de dispersão como valor do módulo.
+      :feedback_b: Esses valores são dados pela aritmética de módulo 11 e sondagem linear.
+      :feedback_c: Parece que você está usando aritmética de módulo 10. Use o tamanho da tabela.
+      :feedback_d: Cuidado: use o módulo, não divisão por inteiro.
 
-      Suppose you are given the following set of keys to insert into a hash table that holds exactly 11 values:  113 , 117 , 97 , 100 , 114 , 108 , 116 , 105 , 99 Which of the following best demonstrates the contents of the has table after all the keys have been inserted using linear probing?
+      Suponha que seja dado o seguinte conjunto de chaves a serem inseridas em uma tabela de dispersão com 11 posições: 113 , 117 , 97 , 100 , 114 , 108 , 116 , 105 , 99. Qual das opções a seguir mostra o conteúdo da tabela depois de todas as chaves terem sido inseridas usando sondagem linear?
 
-Implementing the ``Map`` Abstract Data Type
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-One of the most useful Python collections is the dictionary. Recall that
-a dictionary is an associative data type where you can store key–data
-pairs. The key is used to look up the associated data value. We often
-refer to this idea as a **map**.
+Implementando o Tipo de Dado Abstrato ``Mapa``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The map abstract data type is defined as follows. The structure is an
-unordered collection of associations between a key and a data value. The
-keys in a map are all unique so that there is a one-to-one relationship
-between a key and a value. The operations are given below.
+Um dos tipos mais úteis de coleção em Python é o dicionário. Lembre-se de que
+um dicionário é tipo de dado associativo onde você poder armazenar pares de
+chave-valor. A chave é usada para procurar pelo valor associado. Com frequência,
+referimo-nos a essa ideia como um **mapa**.
 
--  ``Map()`` Create a new, empty map. It returns an empty map
-   collection.
+O tipo de dado abstrato mapa é definido da seguinte forma: a estrutura é uma
+coleção não ordenada de associações entre uma chave e um valor. As chaves em
+um mapa são todas únicas de modo que há uma correspondência um-para-um
+entre uma chave e um valor. As operações são dadas a abaixo.
 
--  ``put(key,val)`` Add a new key-value pair to the map. If the key is
-   already in the map then replace the old value with the new value.
+-  ``Map()`` Cria um novo mapa vazio. Retorna uma coleção do tipo mapa vazia.
 
--  ``get(key)`` Given a key, return the value stored in the map or
-   ``None`` otherwise.
+-  ``put(key,val)`` Adiciona um novo par chave-valor para o mapa. Se a chave
+   já estiver no mapa, então substitui o valor antigo pelo novo.
 
--  ``del`` Delete the key-value pair from the map using a statement of
-   the form ``del map[key]``.
+-  ``get(key)`` Dada uma chave, retorna o valor armazenado no mapa ou
+   ``None``, caso contrário.
 
--  ``len()`` Return the number of key-value pairs stored in the map.
+-  ``del`` Elimina o par chave-valor do mapa usando uma declaração da forma
+   ``del map[key]``.
 
--  ``in`` Return ``True`` for a statement of the form ``key in map``, if
-   the given key is in the map, ``False`` otherwise.
+-  ``len()`` Retorna o número de pares chave-valor armazenadas no mapa.
 
-One of the great benefits of a dictionary is the fact that given a key,
-we can look up the associated data value very quickly. In order to
-provide this fast look up capability, we need an implementation that
-supports an efficient search. We could use a list with sequential or
-binary search but it would be even better to use a hash table as
-described above since looking up an item in a hash table can approach
-:math:`O(1)` performance.
+-  ``in`` Retorna ``True`` para uma declaração da forma ``key in map``, se
+   a chave dada estiver no mapa e ``False``, caso contrário.
 
-In :ref:`Listing 2 <lst_hashtablecodeconstructor>` we use two lists to create a
-``HashTable`` class that implements the Map abstract data type. One
-list, called ``slots``, will hold the key items and a parallel list,
-called ``data``, will hold the data values. When we look up a key, the
-corresponding position in the data list will hold the associated data
-value. We will treat the key list as a hash table using the ideas
-presented earlier. Note that the initial size for the hash table has
-been chosen to be 11. Although this is arbitrary, it is important that
-the size be a prime number so that the collision resolution algorithm
-can be as efficient as possible.
+Um dos grandes benefícios de um dicionário é o fato de que dada uma chave,
+podemos procurar pelo valor associado rapidamente. Para conseguir realizar
+essa busca rápida, precisamos de uma implementação que dê suporte a uma
+busca eficiente. Poderíamos usar uma lista com busca binária ou sequencial,
+mas seria ainda melhor se usássemos uma tabela de dispersão, como descrita
+acima, já que a procura por um item em uma tabela de dispersão pode ter um
+desempenho de aproximadamente :math:`O(1)`.
+
+Em :ref:`Listing 2 <lst_hashtablecodeconstructor>`, usamos duas listas para
+criar uma classe do tipo ``HashTable`` que implementa o tipo de dado abstrato
+Map. Uma lista, chamada ``slots``, irá armazenar os valores. Quando realizamos
+a busca com uma chave, a posição correspondente na lista de dados irá conter
+o valor associado. Iremos tratar a lista de chaves como uma tabela de
+dispersão, de acordo com as ideias apresentadas anteriormente. Note que o
+tamanho inicial escolhido para a tabela de dispersão foi 11. Embora isso seja
+arbitrário, é importante que o tamanho seja um número primo para que o
+algoritmo de resolução de colisões seja o mais eficiente possível.
+
 
 .. _lst_hashtablecodeconstructor:
 
@@ -470,15 +474,16 @@ can be as efficient as possible.
             self.data = [None] * self.size
 
 
-``hashfunction`` implements the simple remainder method. The collision
-resolution technique is linear probing with a “plus 1” rehash function.
-The ``put`` function (see :ref:`Listing 3 <lst_hashtablecodestore>`) assumes that
-there will eventually be an empty slot unless the key is already present
-in the ``self.slots``. It computes the original hash value and if that
-slot is not empty, iterates the ``rehash`` function until an empty slot
-occurs. If a nonempty slot already contains the key, the old data value
-is replaced with the new data value.  Dealing with the situation where there are
-no empty slots left is an exercise.
+A função ``hashfunction`` é uma simples implementação do método do resto.
+A ténica para resolução de colisões é a sondagem linear com uma função de
+rehash "mais 1". A função ``put`` (veja :ref:`Listing 3 <lst_hashtablecodestore>`)
+pressupõe que em algum momento haverá uma entrada vazia, a menos que a chave
+já esteja presenta em ``self.slots``. Ela computa o valor original de
+espalhamento e se o slot não estiver vazio, itera a função de ``reshash`` até
+apareça uma entrada vazia. Se um slot não vazio já contiver a chave, o valor
+antigo é substituído pelo novo. Deixamos como exercício a implementação da
+situação em que não há mais slots vazios.
+
 
 .. _lst_hashtablecodestore:
 
@@ -514,19 +519,19 @@ no empty slots left is an exercise.
         return (oldhash+1)%size
 
 
-Likewise, the ``get`` function (see :ref:`Listing 4 <lst_hashtablecodesearch>`)
-begins by computing the initial hash value. If the value is not in the
-initial slot, ``rehash`` is used to locate the next possible position.
-Notice that line 15 guarantees that the search will terminate by
-checking to make sure that we have not returned to the initial slot. If
-that happens, we have exhausted all possible slots and the item must not
-be present.
+Da mesma forma, a função ``get`` (veja :ref:`Listing 4 <lst_hashtablecodesearch>`)
+começa computando o valor inicial de espalhamento. Se o valor não estiver na
+entrada inicial, a função ``rehash`` é usada para encontrar a próxima posição
+possível. Note que a linha 15 garante que a busca irá terminar ao checar que
+não retornamos ao slot inicial. Se isso acontecer, visitamos todas as
+entradas possíveis e, portanto, o item não está presente.
 
-The final methods of the ``HashTable`` class provide additional
-dictionary functionality. We overload the __getitem__ and
-__setitem__ methods to allow access using``[]``. This means that
-once a ``HashTable`` has been created, the familiar index operator will
-be available. We leave the remaining methods as exercises.
+Os métodos finais da classe ``HashTable`` proveem funcionalidade adicional ao
+dicionário. Fazemos uma sobrecarga dos métodos __getitem__ e __setitem__
+para permitir o acesso usando ``[]``. Isso significa que uma vez que a
+``HashTable`` tenha sido criada, operador familiar de índice estará
+disponível. Deixamos os métodos restantes como exercícios.
+
 
 .. _lst_hashtablecodesearch:
 
@@ -568,9 +573,9 @@ be available. We leave the remaining methods as exercises.
 
 
 
-The following session shows the ``HashTable`` class in action. First we
-will create a hash table and store some items with integer keys and
-string data values.
+A sessão seguinte mostra a classe ``HashTable`` em ação. Primeiro, criamos uma
+tabela de dispersão e armazenamos alguns itens com chaves de inteiros e
+valores do tipo string.
 
 ::
 
@@ -590,8 +595,9 @@ string data values.
     ['bird', 'goat', 'pig', 'chicken', 'dog', 'lion',
            'tiger', None, None, 'cow', 'cat']
 
-Next we will access and modify some items in the hash table. Note that
-the value for the key 20 is being replaced.
+A seguir, iremos acessar e modificar alguns itens na tabela de dispersão.
+Note que o valor para a chave 20 está sendo substituído.
+
 
 ::
 
@@ -609,7 +615,7 @@ the value for the key 20 is being replaced.
     None
 
 
-The complete hash table example can be found in ActiveCode 1.
+O exemplo completo da tabela de dispersão está no ActiveCode 1.
 
 .. activecode:: hashtablecomplete
    :caption: Complete Hash Table Example
@@ -694,32 +700,31 @@ The complete hash table example can be found in ActiveCode 1.
 
 
 
-Analysis of Hashing
-^^^^^^^^^^^^^^^^^^^
+Análise do Hashing
+^^^^^^^^^^^^^^^^^^
 
-We stated earlier that in the best case hashing would provide a
-:math:`O(1)`, constant time search technique. However, due to
-collisions, the number of comparisons is typically not so simple. Even
-though a complete analysis of hashing is beyond the scope of this text,
-we can state some well-known results that approximate the number of
-comparisons necessary to search for an item.
+Dissemos anteriormente que no melhor caso, o hashing é uma técnica de
+busca de tempo constante, isto é, :math:`O(1)`. Contudo, devido às colisões,
+o número de comparações não é tipicamente tão simples. Embora uma análise
+completa do hashing esteja além do escopo deste texto, podemos mostrar
+alguns resultados bem conhecidos sobre o número aproximado de comparações
+necessárias para buscar um item.
 
-The most important piece of information we need to analyze the use of a
-hash table is the load factor, :math:`\lambda`. Conceptually, if
-:math:`\lambda` is small, then there is a lower chance of collisions,
-meaning that items are more likely to be in the slots where they belong.
-If :math:`\lambda` is large, meaning that the table is filling up,
-then there are more and more collisions. This means that collision
-resolution is more difficult, requiring more comparisons to find an
-empty slot. With chaining, increased collisions means an increased
-number of items on each chain.
+A peça mais importante de informação de que precisamos para analisar o uso
+de uma tabela de dispersão é o fator de carga :math:`\lambda`. Conceitualmente,
+se :math:`\lambda` for pequeno, então há uma chance menor de colisões,
+o que significa que há mais chance de os itens estarem nas entradas a que
+pertencem. Se :math:`\lambda` for grande, isto é, se a tabela estiver
+carregada, então haverá mais e mais colisões. Isso significa que a resolução
+de colisões será mais difícil, requerendo mais comparações para encontrar uma
+entrada vazia. Com o encademaneto, um número crescente de colisões significa
+um número crescente de itens em cada sequência (ou cadeia).
 
-As before, we will have a result for both a successful and an
-unsuccessful search. For a successful search using open addressing with
-linear probing, the average number of comparisons is approximately
-:math:`\frac{1}{2}\left(1+\frac{1}{1-\lambda}\right)` and an
-unsuccessful search gives
-:math:`\frac{1}{2}\left(1+\left(\frac{1}{1-\lambda}\right)^2\right)`
-If we are using chaining, the average number of comparisons is
-:math:`1 + \frac {\lambda}{2}` for the successful case, and simply
-:math:`\lambda` comparisons if the search is unsuccessful.
+Assim como antes, teremos um resultado tanto para uma busca bem-sucedida
+quanto mal-sucedida. Para uma busca bem-sucedida, usando endereçamento
+aberto com sondagem linear, o número médio de comparações é de aproximadamente
+:math:`\frac{1}{2}\left(1+\frac{1}{1-\lambda}\right)`, enquanto a busca
+mal-sucedida resulta em :math:`\frac{1}{2}\left(1+\left(\frac{1}{1-\lambda}\right)^2\right)`.
+Se usarmos o encadeamento, o número médio de comparações é :math:`1 + \frac {\lambda}{2}`
+para o caso bem-sucedido e simplesmente :math:`\lambda` comparações para
+busca mal-sucedida.

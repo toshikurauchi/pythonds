@@ -2,22 +2,23 @@
     This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
 
-Programming Exercises
----------------------
+Exercícios de programação
+-------------------------
 
-#. Set up a random experiment to test the difference between a
-   sequential search and a binary search on a list of integers.
+#. Crie um experimento aleatório para testar a diferença entre a busca
+   sequencial e binária em uma lista de inteiros.
 
-#. Use the binary search functions given in the text (recursive and
-   iterative). Generate a random, ordered list of integers and do a
-   benchmark analysis for each one. What are your results? Can you
-   explain them?
+#. Use as funções de busca binária do texto (as versões recursiva e
+   iterativa). Gere aleatoriamente uma lista ordenada de inteiros e
+   faça uma análise de desempenho para cada uma. Quais os resultados?
+   Você pode explicá-los?
 
-#. Implement the binary search using recursion without the slice
-   operator. Recall that you will need to pass the list along with the
-   starting and ending index values for the sublist. Generate a random,
-   ordered list of integers and do a benchmark analysis.
+#. Implemente a busca binária usando recursão sem o operador de "slice".
+   Lembre-se de que você irá precisar passar a lista junto com os índices
+   de início e fim para as sublistas. Gere aleatoriamente uma lista ordenada
+   de inteiros e faça uma análise de desempenho.
 
+#. Implemente o método ``len`` (\_\_len\_\_) para a tabela
 #. Implement the ``len`` method (\_\_len\_\_) for the hash table Map ADT
    implementation.
 
