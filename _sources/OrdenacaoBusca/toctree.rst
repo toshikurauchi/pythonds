@@ -19,5 +19,5 @@ Ordenação e Busca
     OQuickSort.rst
     Sumario.rst
     TermosChave.rst
-    DiscussionQuestions.rst
-    ProgrammingExercises.rst
+    QuestoesParaDiscussao.rst
+    ExerciciosDeProgramacao.rst
