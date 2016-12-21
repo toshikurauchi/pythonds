@@ -14,7 +14,7 @@ Ordenação e Busca
     OBubbleSort.rst
     AOrdenacaoPorSelecao.rst
     AOrdenacaoPorInsercao.rst
-    TheShellSort.rst
+    OShellSort.rst
     OMergeSort.rst
     OQuickSort.rst
     Sumario.rst
