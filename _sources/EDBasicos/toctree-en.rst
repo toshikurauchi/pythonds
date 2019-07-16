@@ -1,13 +1,13 @@
-Estruturas de Dados Básicas
-:::::::::::::::::::::::::::
+Basic Data Structures
+:::::::::::::::::::::
 
 .. toctree::
-    :caption: Estruturas de Dados Básicas
+    :caption: Basic Data Structures
     :maxdepth: 2
 
-    Objetivos.rst
-    EstruturasLineares.rst
-    Pilhas.rst
+    Objectives.rst
+    WhatAreLinearStructures.rst
+    WhatisaStack.rst
     TheStackAbstractDataType.rst
     ImplementingaStackinPython.rst
     SimpleBalancedParentheses.rst
